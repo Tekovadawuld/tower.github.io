@@ -15,12 +15,11 @@ Attend the Royal Gala as Miss Raven Crow, a commoner with a knack for fixing thi
 <a target="_blank" href="https://tekovadawuld.github.io/tower.github.io/">Play Game</a>
 
 <br>
-_Prince Tehkovadawuld's Tower_ is a text-based interactive fiction game created by Anna Sanchez. 
+*Prince Tehkovadawuld's Tower* is a text-based interactive fiction game created by Anna Sanchez. 
 This game was created with [twine](https://twinery.org/), "an open-source tool for telling interactive, nonlinear stories."
 
 Original background illustrations by Anna Sanchez
 Original food illustrations by Ella Perry.
-
 
 Music and sound effects:
 
