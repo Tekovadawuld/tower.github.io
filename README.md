@@ -9,13 +9,13 @@ at the Royal Grand Gala, to be held on Friday, the seventeenth of November, in t
 
 Doors will open at 6 o'clock PM.
 <br>
-
+<br>
 Attend the Royal Gala as Miss Raven Crow, a commoner with a knack for fixing things. But in a world where everything is constantly breaking, this knack can get you into trouble. Just try not to upset the Prince, ok?
 
 <a target="_blank" href="https://tekovadawuld.github.io/tower.github.io/">Play Game</a>
 
 <br>
-Prince Tehkovadawuld's Tower is a text-based interactive fiction game created by Anna Sanchez. 
+_Prince Tehkovadawuld's Tower_ is a text-based interactive fiction game created by Anna Sanchez. 
 This game was created with [twine](https://twinery.org/), "an open-source tool for telling interactive, nonlinear stories."
 
 Original background illustrations by Anna Sanchez
