@@ -20,7 +20,7 @@ tw-story {
   font-family: "Spectral",serif;
   text-align: left;
   background: rgb(1,3,20);
-  background: linear-gradient(0deg, rgba(1,3,20,1) 0%, rgba(30,38,64,1) 100%);
+  background: linear-gradient(0deg, rgba(1,3,20,1) 0%, rgba(30,38,64,1) 40%);
   --text-color: #F3EAC0;
   color: var(--text-color);
   vertical-align: center;
@@ -68,7 +68,7 @@ tw-visited tw-link:visited {
 }
 
 tw-sidebar {
-	color: var(--link-color);
+    display: none;
 }
 
 tw-dialog {
@@ -110,7 +110,8 @@ img {
   border: #000 solid 3px;
 }
 .dialog {
-  color: var(--dialog-color);</style><script role="script" id="twine-user-script" type="text/twine-javascript">// Sound namespace.
+  color: var(--dialog-color);
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">// Sound namespace.
 if (typeof Sound == "undefined") {
 	var Sound = {
 		play: function(tune) {
@@ -252,25 +253,50 @@ Greet [[a pig]]
 
 [[run]]
 [[hide]]
-[[stay]]]]</tw-passagedata><tw-passagedata pid="15" name="examine hay stack" tags="Inventory" position="2225,1025" size="100,100">{&lt;script&gt;Sound.play(&#39;https://www.dropbox.com/scl/fi/9khucah02v8rk4syroers/forest-with-small-river-birds.mp3?rlkey=3z0w0w8ff2syzh3zq7cv6upop&amp;dl=1&#39;);&lt;/script&gt;}
+[[stay]]]]</tw-passagedata><tw-passagedata pid="15" name="examine hay stack" tags="Inventory" position="2225,1025" size="100,100">{&lt;script&gt;
+Sound.stop();
+
+Sound.play(&#39;https://www.dropbox.com/scl/fi/9khucah02v8rk4syroers/forest-with-small-river-birds.mp3?rlkey=3z0w0w8ff2syzh3zq7cv6upop&amp;dl=1&#39;);&lt;/script&gt;}
 You see something shiny. Another [[coin]]!
 
 [[stables]] 
-[[path]]</tw-passagedata><tw-passagedata pid="16" name="Inventory" tags="footer" position="200,0" size="100,100">{ (if: (passage:)&#39;s tags contains &quot;Inventory&quot;) [
+[[path]]</tw-passagedata><tw-passagedata pid="16" name="Inventory" tags="footer" position="200,0" size="100,100">&lt;div class=&quot;inventory&quot;&gt;{ (if: (passage:)&#39;s tags contains &quot;Inventory&quot;) [
 You have: (for: each _item, ...$inventory) [
   (print: _item&#39;s name)(if: $inventory&#39;s last is not _item)[, ]
-]]}
+]]}&lt;/div&gt;
+{&lt;style&gt;
 
-{(link:&quot;Save game&quot;)[
-  (if:(save-game:&quot;$name&quot;))[
-    Game saved!
-  ](else: )[
-    Sorry, I couldn&#39;t save your game.
-  ]
-]
-{&lt;br&gt;(if: (saved-games: ) contains &quot;$name&quot;)[
-  (link: &quot;Load game&quot;)[(load-game: &quot;$name&quot;)]
-]}}</tw-passagedata><tw-passagedata pid="17" name="Yes" tags="Inventory" position="50,300" size="100,100">{&lt;script&gt;
+.inventory {
+padding: 10px;
+border: 2px solid rgb(2, 6, 33);
+background: rgb(1,3,20);
+border-radius: 7px;
+}
+
+.container {
+display: flex;
+justify-content: space-around;
+border: 2px solid rgb(2, 6, 33);
+background: rgb(1,3,20);
+border-radius: 7px;
+align-items: center;
+}
+
+.save-load {
+background: rgb(1,3,20);
+border-radius: 7px;
+padding: 10px;
+}
+
+&lt;/style&gt;
+
+}&lt;div class=&quot;container&quot;&gt;&lt;div&gt;&lt;/div&gt;&lt;div class=&quot;save-load&quot;&gt;{(link:&quot;Save game&quot;)[(if:(save-game:&quot;$name&quot;))[ Game saved!](else: )[Sorry, I couldn&#39;t save your game.]]&lt;/div&gt;&lt;div class=&quot;save-load&quot;&gt;{(if: (saved-games: ) contains &quot;$name&quot;)[(link: &quot;Load game&quot;)[(load-game: &quot;$name&quot;)]
+]}}&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+</tw-passagedata><tw-passagedata pid="17" name="Yes" tags="Inventory" position="50,300" size="100,100">{&lt;script&gt;
 
 Sound.fade(0, 1000);
 
@@ -285,8 +311,8 @@ Sound.fade(1, 1000);
 If only there were [[a way out...-&gt;look around the tower]]</tw-passagedata><tw-passagedata pid="18" name="No" tags="Inventory" position="150,200" size="100,100">{(if: $ateCookie is true)[ [[I]] wish I had another cookie ,too.]
 (else:)[Understandable. You can wait here unil you&#39;re ready. Here, have a cookie. 
 
-(set: $inventory to it + (a: $cookie))
-(set: $found_cookie to true)]}
+(if: $inventory does not contain (a: $cookie))[(set: $inventory to it + (a: $cookie))
+(set: $found_cookie to true)]]}
 
 [[Okay, I&#39;m ready now-&gt;Yes]]</tw-passagedata><tw-passagedata pid="19" name="Untitled Passage" tags="" position="100,0" size="100,100">(set: $key to (dm:
 &quot;id&quot;, 1,
@@ -346,7 +372,7 @@ A few minutes pass and you don&#39;t hear anything.
 (if: $hasSausage)[[give sausage]]&lt;br&gt;
 (if: $hasCupcake)[[give cupcake]]&lt;br&gt;
 (if: $hasPie)[[throw mini pie]]&lt;br&gt;
-}</tw-passagedata><tw-passagedata pid="24" name="bribe him with cookie" tags="Inventory Ending" position="2600,525" size="100,100">(set: $inventory to it - (a: &quot;cookie&quot;))You pull out your cookie. I can&#39;t believe you haven&#39;t eaten that by now. I mean seriously, isn&#39;t it stale yet?
+}</tw-passagedata><tw-passagedata pid="24" name="bribe him with cookie" tags="Inventory Ending" position="2600,525" size="100,100">(set: $inventory to it - (a: &quot;cookie&quot;))(set: $found_cookie to false)You pull out your cookie. I can&#39;t believe you haven&#39;t eaten that by now. I mean seriously, isn&#39;t it stale yet?
 
 Anyway, you offer the horribly stale pastry to the gaurd in return for your freedom. Fortunately for you, this gaurd happens to love stale cookies.
 
@@ -434,7 +460,7 @@ The hair is rough and frayed, but you drape it around your shoulders. You desper
 [[&quot;Yes.&quot;]]
 [[run]] </tw-passagedata><tw-passagedata pid="46" name="&quot;Uh, nope.&quot;" tags="Inventory" position="2475,150" size="100,100">The guard stares at you for a long moment and you (text-style: &quot;sway&quot;)[shift] nervously.
 
-(text-colour:#33CCCC)[&quot;You look a lot like the description of that tower girl. Messy hair, grease stains, and a snarky expression. I&#39;m gonna have to take you to see the boss.&quot;]
+(text-colour:#33CCCC)[&quot;You look a lot like that tower girl. Messy hair, grease stains, and a snarky expression. I&#39;m gonna have to take you to see the boss.&quot;]
 
 [[&quot;Wait! If we leave our post, she could escape, and then we&#39;ll get in trouble!&quot;-&gt;you&#39;re right]]
 
@@ -447,7 +473,7 @@ The guard nods and marches toward the hay stack
 [[limp into the forest]]
 [[wait]]</tw-passagedata><tw-passagedata pid="48" name="you&#39;re right" tags="Inventory" position="2475,250" size="100,100">(set: $pedicure to true)The guard relaxes and he smiles, an expression that looks foreign on his face. 
 
-(text-colour:#33CCCC)[&quot;You&#39;re right. I&#39;m just uptight ever since Prince Tehkovadawuhld started punishing us with pedicure duty when we mess up. I mean, have you seen the man&#39;s toes?&quot; The guard shivers involuntarily.]
+(text-colour:#33CCCC)[&quot;You&#39;re right. I&#39;m just uptight ever since Prince Tehkovadawuhld started punishing us with pedicure duty when we mess up. I mean, have you seen the man&#39;s toes?&quot;]
 
 [[&quot;I&#39;m gonna go check the stables&quot;-&gt;stables]]
 [[I&#39;d better take a look at that hay stack over there&quot;-&gt;examine hay stack]] 
@@ -526,9 +552,13 @@ Oh, and a freshly spun spider web, with a cute little spider spinning it&#39;s w
 (set: $found_hair to false)
 (set: $found_cookie to false)
 (set: $hasSausage to false)
+(set: $canIGoHome to false)
+(set: $doYouPedicure to false)
+(set: $doYouLove to false)
+(set: $whatLetter to false)
 (set: $note to (dm:
 &quot;id&quot;, 1,
-  &quot;name&quot;, &quot;[[a note]]&quot;,
+  &quot;name&quot;, &quot; [[a note]]&quot;,
   &quot;description&quot;, &quot;It&#39;s from your sister.
  
  //Brireshire 1457 
@@ -605,8 +635,6 @@ Oh, and a freshly spun spider web, with a cute little spider spinning it&#39;s w
   &quot;description&quot;, &quot;a sturdy wicker basket.&quot;))
 (set: $inventory to (a: $note 
 ))
-(set: $inventory to (a: $note 
-))
 }</tw-passagedata><tw-passagedata pid="58" name="squeaks" tags="Inventory Music" position="525,975" size="100,100">{(set: $hallway to true)&lt;script&gt;Sound.stop();
 
 Sound.play(&#39;https://www.dropbox.com/scl/fi/uzd2ks9r36wly05qind4n/creepy-door.mp3?rlkey=x0lkl64amkfdd6c9qp7zhg8jf&amp;dl=1&#39;);
@@ -667,7 +695,13 @@ Prince Tehkovadawuhld]]
 
 [[back-&gt;basket]]
 
-</tw-passagedata><tw-passagedata pid="66" name="crowbar." tags="Inventory" position="1450,550" size="100,100">(set: $inventory to it + (a: $crowbar))(set:$found_crowbar to true)You picked up the crowbar.
+</tw-passagedata><tw-passagedata pid="66" name="crowbar." tags="Inventory" position="1450,550" size="100,100">{(if: $inventory does not contain (a: $crowbar) 
+and $found_crowbar is false)[
+
+(set: $inventory to it + (a: $crowbar))
+(set:$found_crowbar to true)]
+
+}You picked up the crowbar.
 
 [[look around the tower]] </tw-passagedata><tw-passagedata pid="67" name="look down" tags="Inventory" position="1500,450" size="100,100">(if:$found_crowbar is false)[Hey, there&#39;s a [[crowbar-&gt;crowbar.]] with some gum stuck to it.] (else:)[Your shoes are a little muddy from running away from the royal guards yesterday. 
 
@@ -686,7 +720,7 @@ You aren&#39;t sure how this ended up in your pocket.
 
 Eat note(click-replace:&quot;Eat note&quot;)[(set: $inventory to it - (a: $note))The paper tastes, well... papery. You kind of regret eating it.]
  
-(link-goto: &quot;back&quot;, $lastPassage)</tw-passagedata><tw-passagedata pid="70" name="a handkerchief" tags="" position="50,525" size="100,100">(print:$handkerchief&#39;s description)</tw-passagedata><tw-passagedata pid="71" name="a key" tags="" position="50,725" size="100,100">(print:$key&#39;s description)</tw-passagedata><tw-passagedata pid="72" name="hair" tags="" position="150,625" size="100,100">(print:$hair&#39;s description)</tw-passagedata><tw-passagedata pid="73" name="a cookie" tags="menu" position="150,425" size="100,100">(if: $ateCookie is false)[&lt;img src=&quot;https://www.dropbox.com/scl/fi/njjtgw6rrgkg4vj2ct57m/cookie.jpeg?rlkey=53w25u79uwu52dfp6jr5ug1e8&amp;dl=1&quot; alt=&quot;coookiiieee&quot; width=&quot;949&quot; height=&quot;982&quot;&gt;&lt;br&gt;Eat cookie?(click-replace: &quot;Eat cookie?&quot;)[(set: $ateCookie to true)(set: $inventory to it - (a: $cookie))The chocolate chips melt in your mouth...
+(link-goto: &quot;back&quot;, $lastPassage)</tw-passagedata><tw-passagedata pid="70" name="a handkerchief" tags="" position="50,525" size="100,100">(print:$handkerchief&#39;s description)</tw-passagedata><tw-passagedata pid="71" name="a key" tags="" position="50,725" size="100,100">(print:$key&#39;s description)</tw-passagedata><tw-passagedata pid="72" name="hair" tags="" position="150,625" size="100,100">(print:$hair&#39;s description)</tw-passagedata><tw-passagedata pid="73" name="a cookie" tags="menu" position="150,425" size="100,100">(if: $ateCookie is false)[&lt;img src=&quot;https://www.dropbox.com/scl/fi/njjtgw6rrgkg4vj2ct57m/cookie.jpeg?rlkey=53w25u79uwu52dfp6jr5ug1e8&amp;dl=1&quot; alt=&quot;coookiiieee&quot; width=&quot;949&quot; height=&quot;982&quot;&gt;&lt;br&gt;Eat cookie?(click-replace: &quot;Eat cookie?&quot;)[(set: $ateCookie to true)(set: $inventory to it - (a: $cookie)(set: $found_cookie to false))The chocolate chips melt in your mouth...
 You ate a cookie!]]
 (else:)[ [[I]] wish I had another cookie ,too.]
 (link-goto: &quot;back&quot;, $lastPassage)</tw-passagedata><tw-passagedata pid="74" name="a screwdriver" tags="" position="50,625" size="100,100">(print:$screwdriver&#39;s description)</tw-passagedata><tw-passagedata pid="75" name="a badge" tags="" position="50,825" size="100,100">(print:$badge&#39;s description)</tw-passagedata><tw-passagedata pid="76" name="a crowbar" tags="" position="150,725" size="100,100">(print:$crowbar&#39;s description)</tw-passagedata><tw-passagedata pid="77" name="ABC gum" tags="" position="150,525" size="100,100">Aka &quot;already been chewed.&quot; Yuck.
@@ -781,11 +815,11 @@ Looks like your free to [[escape-&gt;CONTINUED...]].</tw-passagedata><tw-passage
 He points his spear at you. (text-colour:#33CCCC)[&quot;Back in the tower, missy.&quot;]
 
 [[You messed up. Try again?-&gt;Yes]]</tw-passagedata><tw-passagedata pid="97" name="eat cupcake" tags="Ending" position="2700,775" size="100,100">&lt;script&gt;Sound.stop();&lt;/script&gt;
-&lt;script&gt;Sound.play(&#39;music/desire-for-freedom.mp3&#39;);&lt;/script&gt;The creamy goodness of the cupcake washes over you, even as the guard points his spear at you.
+&lt;script&gt;Sound.play(&#39;https://www.dropbox.com/scl/fi/vtphefh4tmyki91igeobm/desire-for-freedom.mp3?rlkey=eajsa01afuqq0qm6h9qnu6sih&amp;dl=1&#39;);&lt;/script&gt;The creamy goodness of the cupcake washes over you, even as the guard points his spear at you.
 
 (text-colour:#33CCCC)[&quot;Back in the tower you go.&quot;]
 
-The taste of the cupcake lingers even as you are transported back to [[the tower-&gt;Yes]].</tw-passagedata><tw-passagedata pid="98" name="throw mini pie" tags="" position="2600,725" size="100,100">The pie lands with a //splat// on the guard&#39;s nose. He brandishes his spear at you while licking the drips of apple filling off his chin.
+The taste of the cupcake lingers even as you are transported back to [[the tower-&gt;look around the tower]].</tw-passagedata><tw-passagedata pid="98" name="throw mini pie" tags="" position="2600,725" size="100,100">The pie lands with a //splat// on the guard&#39;s nose. He brandishes his spear at you while licking the drips of apple filling off his chin.
 
 (text-colour:#33CCCC)[[[&quot;Back in the tower you miscreant!&quot;-&gt;Yes]]]</tw-passagedata><tw-passagedata pid="99" name="broken hook" tags="Inventory" position="1250,800" size="100,100">{&lt;img src=&quot;https://www.dropbox.com/scl/fi/vc3xswtenf0rm0bzc4kiq/window.jpg?rlkey=ef801l8l9ytzndx1hzog9fy7c&amp;dl=1&quot;&gt;}Looks like the hook snapped right off of the fastening.
 
@@ -847,9 +881,9 @@ You ride off into the sunset on your glorious... pig.
 
 Not quite as romantic as you were thinking. Now its time to find your sister and see about that super important top secret note. 
 
-With the pig, you might arrive in time. If it grows wings and learns to fly, that is. I mean really. Can a pig walk any [[slower?-&gt;CONTINUED...]]</tw-passagedata><tw-passagedata pid="114" name="magic pig" tags="" position="2050,1200" size="100,100">&lt;script&gt;Sound.stop();
+With the pig, you might arrive in time. If it grows wings and learns to fly, that is. I mean really. Can a pig walk any [[slower?-&gt;CONTINUED...]]</tw-passagedata><tw-passagedata pid="114" name="magic pig" tags="" position="2075,1200" size="100,100">&lt;script&gt;Sound.stop();
 
-var audio_background = new Audio(&#39;music/pigs.mp3&#39;);
+var audio_background = new Audio(&#39;https://www.dropbox.com/scl/fi/1w8cwwom9i959aiv3ldnf/pigs.mp3?rlkey=3aibe7jio02bby91brvshxh85&amp;dl=1&#39;);
 audio_background.play();
 
 Sound.play(&#39;music/forest-with-small-river-birds.mp3&#39;);&lt;/script&gt;
@@ -882,7 +916,7 @@ Back in the[[ tower-&gt;Start]] you go...</tw-passagedata><tw-passagedata pid="1
 
 Now you just need to see about that note from your sister in Briarshire.
 
-[[escape into the forest-&gt;CONTINUED...]] </tw-passagedata><tw-passagedata pid="123" name="I" tags="" position="150,300" size="100,100">Who am I? I&#39;m the little sprite that follows you around wherever you go. I give you helpful little hints and reminders. 
+[[Walk down forest path-&gt;CONTINUED...]] </tw-passagedata><tw-passagedata pid="123" name="I" tags="" position="150,300" size="100,100">Who am I? I&#39;m the little sprite that follows you around wherever you go. I give you helpful little hints and reminders. 
 
 C&#39;mon, you know you love me! [[*wink*-&gt;No]]</tw-passagedata><tw-passagedata pid="124" name="floorboard" tags="Inventory" position="700,1225" size="100,100">{(if: $found_crowbar or $found_screwdriver)[ [[pry up plank-&gt;plank]]]
 (else:)[[[Hmm...-&gt;look under rug]]]}</tw-passagedata><tw-passagedata pid="125" name="paper" tags="Inventory" position="800,1225" size="100,100">(set: $readPaper to true)The delicate paper quivers as you unfold it.
@@ -891,8 +925,8 @@ C&#39;mon, you know you love me! [[*wink*-&gt;No]]</tw-passagedata><tw-passageda
 
 Did the prince write it, or the tower&#39;s prior inhabitant?
 
-(if: $found_hair is true)[[[back-&gt;Open drawer]]]
-(else:)[[[back-&gt;plank]]]</tw-passagedata><tw-passagedata pid="126" name="wall" tags="Inventory" position="425,1175" size="100,100">Acording to that note, something should be on the... 
+
+[[back-&gt;plank]]</tw-passagedata><tw-passagedata pid="126" name="wall" tags="Inventory" position="425,1175" size="100,100">Acording to that note, something should be on the... 
 
 left side (click-replace: &quot;left side&quot;)[Something slimy coats your hand...]
 [[right side-&gt;right]]
@@ -905,14 +939,14 @@ left side (click-replace: &quot;left side&quot;)[Something slimy coats your hand
 You found a [[lighter-&gt;stairs 2]].</tw-passagedata><tw-passagedata pid="132" name="stairs 2" tags="Inventory" position="325,1575" size="100,100">The stairs are too rotted to traverse. (if: (visited: &quot;attach hair to hook and climb down&quot;)) [But you might be able to [[climb down-&gt;jump]] the handrail.]
 [[back-&gt;hallway]]</tw-passagedata><tw-passagedata pid="133" name="hallway" tags="Inventory" position="325,1475" size="100,100">(set: $hallway to true)The light that flickers from the overhead lights is dim, but at least it reveals that the &quot;crunch&quot; from before wasn&#39;t pretzels or bones. 
 
-(if: $basket does not contain (a: &quot;candles&quot;))[Long (if: $hasCandle)[candlesticks](else:)[[candlesticks]] litter the narrow hallway like pepsi cans on an abandoned freeway. 
+(if: $basket does not contain (a: &quot;candles&quot;))[Long (if: $hasCandle)[candles](else:)[[candles]] litter the narrow hallway like pepsi cans on an abandoned freeway. 
 {(if: $inventory contains $basket and $candleBasket is false)[[[Put candlesticks in basket.-&gt;candle basket]]]}]
 
 There are some [[stairs-&gt;stairs 2]] at the end of the hallway.
 
-There&#39;s not much else here. You may as well [[go back-&gt;back to tower]].</tw-passagedata><tw-passagedata pid="134" name="candlesticks" tags="Inventory" position="325,1675" size="100,100">[[Take candlestick]]?
+There&#39;s not much else here. You may as well [[go back-&gt;back to tower]].</tw-passagedata><tw-passagedata pid="134" name="candles" tags="Inventory" position="325,1675" size="100,100">[[Take candle]]?
 
-[[Nah.-&gt;hallway]]</tw-passagedata><tw-passagedata pid="135" name="Take candlestick" tags="Inventory" position="150,1675" size="100,100">(set: $hasCandle to true)(set: $inventory to it + (a: $candle))
+[[Nah.-&gt;hallway]]</tw-passagedata><tw-passagedata pid="135" name="Take candle" tags="Inventory" position="150,1675" size="100,100">(set: $hasCandle to true)(set: $inventory to it + (a: $candle))
 
 The overhead lights flicker and a tiny spark land on the candle. The wick [[catches.-&gt;flame]]</tw-passagedata><tw-passagedata pid="136" name="Test" tags="" position="300,150" size="100,100">{(set: $inventory to it + (a: $screwdriver))
 (set: $inventory to it + (a: $crowbar))
@@ -922,15 +956,19 @@ The overhead lights flicker and a tiny spark land on the candle. The wick [[catc
 (set: $inventory to it + (a: $basket))
 (set: $inventory to it + (a: $hair))
 (set: $inventory to it + (a: $lighter))
-(set: $inventory to it + (a: $cookie))
+(set: $inventory to it + (a: $turkishDelight))
 (set: $fixedRadio to true)
+(set: $inventory to it + (a: $cookie))
 (set: $health to 200)
 (set: $coins to 500)
+(set: $time1 to true)
+(set: $found_cookie to true)
 }
 [[hallway]]
 [[squeaks]]
 [[path]]
-[[look around the tower]] </tw-passagedata><tw-passagedata pid="137" name="Put candle in pocket" tags="Inventory" position="125,1775" size="100,100">{(if: $hasSausage)[The candlestick slides neatly next to the sausage in your pocket. Hopefully you don&#39;t have to sit down anytime soon...]
+[[look around the tower]] 
+[[stables]]</tw-passagedata><tw-passagedata pid="137" name="Put candle in pocket" tags="Inventory" position="125,1775" size="100,100">{(if: $hasSausage)[The candlestick slides neatly next to the sausage in your pocket. Hopefully you don&#39;t have to sit down anytime soon...]
 (else:)[You might not want to sit down, just sayin&#39;.]}
 
 [[hallway]]</tw-passagedata><tw-passagedata pid="138" name="Capture" tags="" position="275,275" size="100,100">You&#39;ve been captured by Prince Tehkovadawuhld. Are you ready to face reality?
@@ -978,7 +1016,7 @@ She starts fumbling around with the firewood, and pulls some lint out from her p
 
 [[&quot;Prince Tehkovadawuhld imprisoned me and I just escaped.&quot;-&gt;captured]]</tw-passagedata><tw-passagedata pid="150" name="captured" tags="" position="1075,1400" size="100,100">Ayana stops what she&#39;s doing and stares. (text-colour:#33CCCC)[&quot;What?&quot;]
 
-&quot;Yes,&quot; you explain. &quot;And if I don&#39;t agree to marry him by sunset, he&#39;s going to have me killed.&quot;
+&quot;And if I don&#39;t agree to marry him by sunset,&quot; you explain, &quot;he&#39;s going to have me killed.&quot;
 
 Ayana crosses her arms in front of her. (text-colour:#33CCCC)[&quot;But you haven&#39;t even met the prince.&quot;]
 
@@ -988,7 +1026,7 @@ Ayana&#39;s eyebrow shoots up. (text-colour:#33CCCC)[&quot;And you said no?&quot
 
 [[Of course!-&gt;answer]]
 [[Well, yeah.-&gt;answer]]
-[[Would you have said yes?]]</tw-passagedata><tw-passagedata pid="151" name="answer" tags="" position="1075,1500" size="100,100">Ayana eyes the candle in your hand and you notice a drip descending toward your hand.
+[[Would you have said yes?]]</tw-passagedata><tw-passagedata pid="151" name="answer" tags="" position="1075,1500" size="100,100">Ayana eyes the candle and you notice a drip descending toward your hand.
 (text-colour:#33CCCC)[&quot;That was idiotic of you. So how&#39;d you get out?&quot;]
 
 [[tell her]]
@@ -999,7 +1037,7 @@ Ayana&#39;s eyebrow shoots up. (text-colour:#33CCCC)[&quot;And you said no?&quot
 [[Sure!]]
 [[Nope]]</tw-passagedata><tw-passagedata pid="153" name="don&#39;t tell her" tags="" position="1125,1600" size="100,100">(text-colour:#33CCCC)[&quot;So you&#39;re giving your own sister the silent treatment?&quot; ]Ayana says. (text-colour:#33CCCC)[&quot;I thought we were closer than that.&quot; ]
 
-She puts an arm around your shoulder.(text-colour:#33CCCC)[ &quot;Does it have something to do with this candle? Did you get it from that tower? I&#39;ve certainly never seen anything like it before...&quot;]
+She puts an arm around your shoulder.(text-colour:#33CCCC)[ &quot;Does it have something to do with this candle? I&#39;ve certainly never seen anything like it before...&quot;]
 
 You smile. Youre glad your sister finally seems happy to see you, but something feels off about the [[moment.]]</tw-passagedata><tw-passagedata pid="154" name="Sure!" tags="" position="975,1500" size="100,100">You start to hand the candle to her, but a gust of wind blows it out. And then you find yourself [[back in the tower.-&gt;look around the tower]]</tw-passagedata><tw-passagedata pid="155" name="Nope" tags="" position="1025,1700" size="100,100">Ayana frowns. (text-colour:#33CCCC)[&quot;You&#39;re pretty protective of your candle then. Where did you get it?&quot;]
 
@@ -1017,7 +1055,7 @@ You smile. Youre glad your sister finally seems happy to see you, but something 
 
 [[She snuffs out the flame.]]</tw-passagedata><tw-passagedata pid="160" name="She snuffs out the flame." tags="" position="1225,1750" size="100,100">&lt;script&gt;Sound.resume();&lt;/script&gt;You blink and you are back in the hallway. [[Put candle in pocket]].</tw-passagedata><tw-passagedata pid="161" name="Would you have said yes?" tags="" position="975,1400" size="100,100">(text-colour:#33CCCC)[&quot;Of course!&quot;] Ayana exclaims. (text-colour:#33CCCC)[&quot;He&#39;s only the richest man in the kingdom.&quot;]
 
-She eyes the candle in your hand and you notice a drip descending toward your hand.
+She eyes the candle and you notice a drip descending toward your hand.
 (text-colour:#33CCCC)[&quot;So how&#39;d you get out?&quot;]
 
 [[tell her]]
@@ -1033,7 +1071,7 @@ For now, you put your hood up and [[continue]] down the path(if: $ridePig is tru
 [[go back-&gt;wrong door]]]}
 (else:)[You wait a moment after knocking,  and the clatter of pots and pans echo from the open window.
 
-The door swings open, revealing a plump woman with gray eyes and hair. Her frown takes up the whole width of her face.
+The door swings open, revealing a plump woman with gray eyes and hair. She&#39;s chewing bright blue gum, as made obvious by the obnoxious smacking sound she&#39;s making.
 
 (text-colour:#33CCCC)[&quot;What do ya want?&quot;] she snaps.
 
@@ -1058,7 +1096,7 @@ What you don&#39;t see coming is the dutch oven the old woman smashes over your 
 (text-colour:blue)[//[[You have made a fatal mistake. Try again?-&gt;knock on the door]]//]
 </tw-passagedata><tw-passagedata pid="168" name="kidding" tags="" position="2825,1000" size="100,100">The woman&#39;s face darkens. (text-colour:#33CCCC)[&quot;And I&#39;m rolling on the floor, laughing.&quot;]
 
-The last thing you feel is the cold stone of a dutch oven connecting with your face.
+The last thing you feel is the cold stone of a dutch oven as it connects with your face.
 
 (text-colour:blue)[//[[You have made a fatal mistake. Try again?-&gt;knock on the door]]//]</tw-passagedata><tw-passagedata pid="169" name="wrong door" tags="Inventory" position="2950,650" size="100,100">You walk back down the path and come to the [[fork-&gt;continue]].</tw-passagedata><tw-passagedata pid="170" name="continue" tags="Inventory" position="2825,450" size="100,100">The path to the [[left-&gt;path-left]] runs deeper into the forest, where there is more shadow that light.
 
@@ -1134,7 +1172,7 @@ She attacks with a warm embrace before pulling back. (text-colour:#33CCCC)[&quot
 [[hide]]
 [[stay]]</tw-passagedata><tw-passagedata pid="183" name="&quot;What candles?&quot;" tags="Inventory" position="2925,250" size="100,100">(text-colour:#33CCCC)[&quot;Are you serious?&quot;] Ayana says. She brings a hand to her forhead. (text-colour:#33CCCC)[&quot;You don&#39;t know yet, do you? Just go back and bring the candles with you, as many as you can. Hurry, I don&#39;t have much time.&quot;]
 
-[[go back-&gt;wrong door]]</tw-passagedata><tw-passagedata pid="184" name="has candle" tags="Inventory" position="3025,350" size="100,100">Ayana looks at you incredulously, her lips pursing together. (text-colour:#33CCCC)[&quot;You only brought one? What were you thinking? I need more, maybe all of them.&quot;]
+[[go back-&gt;wrong door]]</tw-passagedata><tw-passagedata pid="184" name="has candle" tags="Inventory" position="3025,350" size="100,100">Ayana purses her lips. (text-colour:#33CCCC)[&quot;You only brought one? What were you thinking? I need more, as many as you can carry.&quot;]
 
 She looks at you with large eyes that kind of remind you of that butterfly. 
 
@@ -1210,7 +1248,8 @@ Eat pie(click-replace: &quot;Eat pie&quot;)[(set: $health to it + 120)You feel r
 
 He follows after, of course. &quot;You don&#39;t understand. That looks exactly like...&quot;
 
-You spin around to face him, but the candle&#39;s flame goes [[out.]]</tw-passagedata><tw-passagedata pid="203" name="give candles" tags="" position="3050,475" size="100,100">{&lt;script&gt;Sound.play(&#39;https://www.dropbox.com/scl/fi/fhozaog4d1r4rwebk1brm/life-of-a-wandering-wizard-15549.mp3?rlkey=75yb6w6xecafa3cjol7svhwsn&amp;dl=1&#39;)&lt;/script&gt;}Ayana&#39;s eyes grow wide at the sight of the basket. (text-colour:#33CCCC)[&quot;You did it!&quot;] She pulls you into an embrace. (text-colour:#33CCCC)[&quot;Thank you, sister. The world will be a different place because of you. Toodles!&quot;]
+You spin around to face him, but the candle&#39;s flame goes [[out.]]</tw-passagedata><tw-passagedata pid="203" name="give candles" tags="" position="3050,475" size="100,100">{&lt;script&gt;Sound.stop();&lt;/script&gt;
+&lt;script&gt;Sound.play(&#39;https://www.dropbox.com/scl/fi/vtphefh4tmyki91igeobm/desire-for-freedom.mp3?rlkey=eajsa01afuqq0qm6h9qnu6sih&amp;dl=1&#39;);&lt;/script&gt;}Ayana&#39;s eyes grow wide at the sight of the basket. (text-colour:#33CCCC)[&quot;You did it!&quot;] She pulls you into an embrace. (text-colour:#33CCCC)[&quot;Thank you, sister. The world is already a different place because of you. Toodles!&quot;]
 
 You&#39;re left with a strange feeling as she walks away. Did you do the right thing?
 
@@ -1223,12 +1262,13 @@ END OF GAME
 
 He stands as you enter the room, guards on either side of you.
 
-(text-colour:#33CCCC)[&quot;I knew you&#39;d come,&quot;] the prince says, the corner of his mouth lifting(if: $time2 is false)[ in an arrogant smirk](else:)[ in a lopsided smile.]
+(text-colour:#33CCCC)[&quot;I knew you&#39;d come,&quot;] the prince says, the corner of his mouth lifting(if: $time2 is false)[ in an arrogant smirk.](else:)[ in a lopsided smile.]
 
 &quot;Can I ask you something?&quot; (click-replace: &quot;\&quot;Can I ask you something?\&quot;&quot;)[
 {[[&quot;What&#39;s with the menacing letter?&quot;]]}
 {[[&quot;Do you actually love me?&quot;]]}
 {[[&quot;Can I go home?&quot;]]}
+{(if: $pedicure is true)[ [[&quot;Do you really make the guards give you pedicures?&quot;]]]}
 ]
 {(if: $time2 is false)[
 [[Bow your head in defeat. He&#39;s won.-&gt;won.]]]}
@@ -1313,23 +1353,28 @@ END OF GAME
 
 (text-colour:#33CCCC)[&quot;I&#39;m guessing you haven&#39;t figured out how to use it yet. I hate to do this to you, but I&#39;m gonna have to send you [[back-&gt;Yes]].&quot;]</tw-passagedata><tw-passagedata pid="230" name="&quot;Found what?&quot;" tags="Inventory" position="1825,125" size="100,100">The Prince rubs his temples. (text-colour:#33CCCC)[&quot;You haven&#39;t then. I hate to do this to you, but I&#39;m gonna have to send you [[back-&gt;Yes]].&quot;]</tw-passagedata><tw-passagedata pid="231" name="bad attack" tags="" position="2025,475" size="100,100">Your crowbar connects with a sickening crunch to the prince&#39;s jawbone.
 
-And then the guards arrows [[fly.-&gt;Game Over]]</tw-passagedata><tw-passagedata pid="232" name="&quot;Do you actually love me?&quot;" tags="" position="1775,500" size="100,100">(if: $punch is true)[(text-colour:#33CCCC)[&quot;If I tell you, will you smash my nose to smitherenes?&quot; ]]
-(else:)[I can&#39;t say...]
+And then the guards arrows [[fly.-&gt;Game Over]]</tw-passagedata><tw-passagedata pid="232" name="&quot;Do you actually love me?&quot;" tags="" position="1775,500" size="100,100">(set: $doYouLove to true)(if: $punch is true)[(text-colour:#33CCCC)[&quot;If I tell you, will you smash my nose to smitherenes?&quot; ]]
+(else:)[(text-colour:#33CCCC)[&quot;I can&#39;t say...&quot;]]
 
 You roll your eyes at the non-answer.
 
-[[&quot;What&#39;s with the menacing letter?&quot;]]
-[[&quot;Can I go home?&quot;]]
-{(if: $candleBasket is true)[ [[give him basket]]]}</tw-passagedata><tw-passagedata pid="233" name="&quot;What&#39;s with the menacing letter?&quot;" tags="" position="1900,500" size="100,100">Oddly, the prince&#39;s stern expression breaks into a smile. (text-colour:#33CCCC)[&quot;Did you like it? My servant came up with the idea. I found it very convincing.&quot;]
+{(if: $whatLetter is false)[ [[&quot;What&#39;s with the menacing letter?&quot;]]]}
+ [[&quot;Can I go home?&quot;]]
+{(if: $pedicure is true and $doYouPedicure is false)[ [[&quot;Do you really make the guards give you pedicures?&quot;]]]}
+{(if: $inventory contains $crowbar)[ [[attack prince-&gt;bad attack]]]}
+{(if: $candleBasket is true)[ [[give him basket]]]}</tw-passagedata><tw-passagedata pid="233" name="&quot;What&#39;s with the menacing letter?&quot;" tags="" position="1900,500" size="100,100">(set: $whatLetter to true)Oddly, the prince&#39;s expression breaks into a smile. (text-colour:#33CCCC)[&quot;Did you like it? My servant came up with the idea. I found it very convincing.&quot;]
 
-[[&quot;Do you actually love me?&quot;]]
-[[&quot;Can I go home?&quot;]]
-{(if: $candleBasket is true)[ [[give him basket]]]}</tw-passagedata><tw-passagedata pid="234" name="&quot;Can I go home?&quot;" tags="" position="1675,500" size="100,100">The prince leans conspiratorily closer. 
+(if: $doYouLove is false)[ [[&quot;Do you actually love me?&quot;]]]
+ [[&quot;Can I go home?&quot;]]
+{(if: $pedicure is true and $doYouPedicure is false)[ [[&quot;Do you really make the guards give you pedicures?&quot;]]]}
+{(if: $inventory contains $crowbar)[ [[attack prince-&gt;bad attack]]]}
+{(if: $candleBasket is true)[ [[give him basket]]]}</tw-passagedata><tw-passagedata pid="234" name="&quot;Can I go home?&quot;" tags="" position="1675,500" size="100,100">(set: $canIGoHome to true)The prince leans conspiratorily closer. 
 
-(text-colour:#33CCCC)[&quot;I can&#39;t do that quite yet. I&#39;m depending on you to help me, but you need to figure it out on your own. Otherwise the present moment could disintigrate and rewrite itself before you can say &#39;candles.&#39;
+(text-colour:#33CCCC)[&quot;I can&#39;t let you go quite yet. I&#39;m depending on you to help me, but you need to figure it out on your own. Otherwise the present moment could disintigrate and rewrite itself before you can say &#39;candles.&#39;
 
 &quot;But I&#39;ll tell you what. I&#39;ll give you another chance. Go back to [[the tower-&gt;Yes]] and come back when you figure it out.&quot;]
 
+{(if: $inventory contains $crowbar)[ [[attack prince-&gt;bad attack]]]}
 {(if: $candleBasket is true)[ [[give him basket]]]}</tw-passagedata><tw-passagedata pid="235" name="Tell him" tags="" position="3850,975" size="100,100">&quot;It was in that stupid tower you locked me in!&quot; You shout, blood rushing to your face.
 
 The Prince blanches. (text-colour:#33CCCC)[&quot;Ha! So you //did// steal it. But How did you get it to work?&quot;]
@@ -1435,7 +1480,13 @@ Sax guitar jazz timpani —&gt; Music by &lt;a href=&quot;https://pixabay.com/us
 Radio static- Sound Effect from &lt;a href=&quot;https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=6717&quot;&gt;Pixabay&lt;/a&gt;
 
 (icon-restart: &quot;Explore a New Path&quot;)
-</tw-passagedata></tw-storydata>
+</tw-passagedata><tw-passagedata pid="258" name="&quot;Do you really make the guards give you pedicures?&quot;" tags="" position="1900,375" size="100,100">(set: $doYouPedicure to true)The Prince throws his head back and laughs. &quot;Yes.&quot;
+
+{(if: $whatLetter is false)[ [[&quot;What&#39;s with the menacing letter?&quot;]]]}
+{(if: $doYouLove is false)[ [[&quot;Do you actually love me?&quot;]]]}
+{ [[&quot;Can I go home?&quot;]]}
+{(if: $inventory contains $crowbar)[ [[attack prince-&gt;bad attack]]]}
+{(if: $candleBasket is true)[ [[give him basket]]]}</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim
