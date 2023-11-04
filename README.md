@@ -12,7 +12,7 @@ Doors will open at 6 o'clock PM.
 
 Attend the Royal Gala as Miss Raven Crow, a commoner with a knack for fixing things. But in a world where everything is constantly breaking, this knack can get you into trouble. Just try not to upset the Prince, ok?
 
-[*Play Game*](https://tekovadawuld.github.io/tower.github.io/)
+<a target="_blank" href="https://tekovadawuld.github.io/tower.github.io/">Play Game</a>
 
 
 Prince Tehkovadawuld's Tower is a text-based interactive fiction game created by Anna Sanchez. 
