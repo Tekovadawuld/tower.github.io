@@ -8,13 +8,13 @@ The Lord Chaimberlain is commanded by His Noble Majesty Prince Tehkovadawuld to 
 at the Royal Grand Gala, to be held on Friday, the seventeenth of November, in the Estate of Presencia, Post Technia.
 
 Doors will open at 6 o'clock PM.
-
+<br>
 
 Attend the Royal Gala as Miss Raven Crow, a commoner with a knack for fixing things. But in a world where everything is constantly breaking, this knack can get you into trouble. Just try not to upset the Prince, ok?
 
 <a target="_blank" href="https://tekovadawuld.github.io/tower.github.io/">Play Game</a>
 
-
+<br>
 Prince Tehkovadawuld's Tower is a text-based interactive fiction game created by Anna Sanchez. 
 This game was created with [twine](https://twinery.org/), "an open-source tool for telling interactive, nonlinear stories."
 
