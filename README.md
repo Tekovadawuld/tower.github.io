@@ -1,13 +1,13 @@
 # tower.github.io
 ## The Prince's Tower
 
-The Lord Chaimberlain is commanded by His Noble Majesty Prince Tehkovadawuhld to request presence of
+<i>The Lord Chaimberlain is commanded by His Noble Majesty Prince Tehkovadawuhld to request presence of
 
 *Miss Raven McCaw*
 
 at the Royal Grand Gala, to be held on Friday, the seventeenth of November, in the Estate of Presencia, Post Technia.
 
-Doors will open at 6 o'clock PM.
+Doors will open at 6 o'clock PM.</i>
 <br>
 <br>
 Attend the Royal Gala as Miss Raven McCaw, a commoner with a knack for fixing things. But in a world where everything is constantly breaking, this knack can get you into trouble. Just try not to upset the Prince, ok?
