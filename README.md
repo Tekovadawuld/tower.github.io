@@ -1,22 +1,22 @@
 # tower.github.io
-## Prince Tehkovadawuld's Tower
+## The Prince's Tower
 
-The Lord Chaimberlain is commanded by His Noble Majesty Prince Tehkovadawuld to request presence of
+The Lord Chaimberlain is commanded by His Noble Majesty Prince Tehkovadawuhld to request presence of
 
-*Miss Raven Crow*
+*Miss Raven McCaw*
 
 at the Royal Grand Gala, to be held on Friday, the seventeenth of November, in the Estate of Presencia, Post Technia.
 
 Doors will open at 6 o'clock PM.
 <br>
 <br>
-Attend the Royal Gala as Miss Raven Crow, a commoner with a knack for fixing things. But in a world where everything is constantly breaking, this knack can get you into trouble. Just try not to upset the Prince, ok?
+Attend the Royal Gala as Miss Raven McCaw, a commoner with a knack for fixing things. But in a world where everything is constantly breaking, this knack can get you into trouble. Just try not to upset the Prince, ok?
 
 <a target="_blank" href="https://tekovadawuld.github.io/tower.github.io/">Play Game</a>
 
 ## About Game
 <br>
-*Prince Tehkovadawuld's Tower* is a text-based interactive fiction game created by Anna Sanchez. 
+*The Prince's Tower* is a text-based interactive fiction game created by Anna Sanchez. 
 This game was created with <a href="https://twinery.org/" target="_blank">twine</a>, "an open-source tool for telling interactive, nonlinear stories."
 <br>
 Original background illustrations by Anna Sanchez
