@@ -167,18 +167,13 @@ if (typeof Sound == "undefined") {
 	};
 	window.Sound = Sound;
 }</script><tw-tag name="Inventory" color="purple"></tw-tag><tw-tag name="footer" color="orange"></tw-tag><tw-tag name="header" color="orange"></tw-tag><tw-tag name="Food" color="green"></tw-tag><tw-tag name="Ending" color="blue"></tw-tag><tw-tag name="startup" color="red"></tw-tag><tw-tag name="debug" color="yellow"></tw-tag><tw-passagedata pid="1" name="Untitled Passage" tags="" position="50,1250" size="100,100"></tw-passagedata><tw-passagedata pid="2" name="Start" tags="Inventory" position="50,200" size="100,100">{&lt;script&gt;Sound.stop();&lt;/script&gt;&lt;script&gt;Sound.play(&#39;https://www.dropbox.com/scl/fi/6ybn3cc2k2adz8gga11w5/crowdtalking.mp3?rlkey=pwccs1t4n2dh3i41pifoh7btd&amp;dl=1&#39;)&lt;/script&gt;
-}The steward pulls the velvet curtain aside to let you [[pass.]]
+}&lt;div class=&quot;dialog&quot;&gt;&quot;Miss $name McCaw of Stromberg!&quot;&lt;/div&gt;
 
-&lt;div class=&quot;dialog&quot;&gt;&quot;Miss $name of Stromberg!&quot;&lt;/div&gt;
+The steward pulls the velvet curtain aside to let you [[pass.]]
 
-[[skip intro-&gt;Capture]]</tw-passagedata><tw-passagedata pid="3" name="look around the tower" tags="Inventory tower" position="825,900" size="100,100">Besides the [[oversized painting]], the room is sparcely decorated, except for...
 
-a [[window]],
-a [[rug]], 
-a [[wooden desk]],
-and a [[door]].
-
-&lt;img src=&quot;https://www.dropbox.com/scl/fi/z0kcfpgthg08clf53gs1c/towerrm.jpg?rlkey=zduh0ld6mf0m4pnnzm1hsl0dk&amp;dl=1&quot; alt=&quot;Normally, there would be a stunning illustration of the main tower room here.&quot;&gt;</tw-passagedata><tw-passagedata pid="4" name="window" tags="Inventory" position="1150,750" size="100,100">The window isn&#39;t too small to fit through. Even so, it&#39;s much too high to jump from. (if: $money &lt; 1) [ A [[small coin]] on the window ledge catches your eye.]
+[[skip intro-&gt;Capture]]</tw-passagedata><tw-passagedata pid="3" name="look around the tower" tags="Inventory tower" position="825,900" size="100,100">&lt;img src=&quot;https://www.dropbox.com/scl/fi/z0kcfpgthg08clf53gs1c/towerrm.jpg?rlkey=zduh0ld6mf0m4pnnzm1hsl0dk&amp;dl=1&quot; alt=&quot;Normally, there would be a stunning illustration of the main tower room here.&quot;&gt;
+Besides the [[oversized painting]], the room is sparcely decorated, except for a [[window]], a [[wooden desk]], a [[rug]], and a [[door]].</tw-passagedata><tw-passagedata pid="4" name="window" tags="Inventory" position="1150,750" size="100,100">The window isn&#39;t too small to fit through. Even so, it&#39;s much too high to jump from. (if: $money &lt; 1) [ A [[small coin]] on the window ledge catches your eye.]
 
 (cond: $trickCoin, &quot; The [[broken hook]] on the side of the window fills you with hopelessness.&quot;, &quot; There&#39;s an old rusty hook fastened to the side of the window.&quot;)
 &lt;img src=&quot;https://www.dropbox.com/scl/fi/vc3xswtenf0rm0bzc4kiq/window.jpg?rlkey=ef801l8l9ytzndx1hzog9fy7c&amp;dl=1&quot;&gt;
@@ -190,7 +185,7 @@ There&#39;s also an [[old radio]]
 {(if: $hasBasket is false)[and a nice looking wicker [[basket]].]
 (if: $inventory does not contain $basket and $AyanaMeet is true)[[[take basket-&gt;take bskt]]]}
 
-[[look around the tower]] 
+[[look around the tower]]
 
 
 &lt;img src=&quot;https://www.dropbox.com/scl/fi/ong073xd83e4hfpn271lm/desk.jpg?rlkey=xwf2u0rqbez1iqfu6oh7zbkg7&amp;dl=1&quot;&gt;</tw-passagedata><tw-passagedata pid="6" name="rug" tags="Inventory" position="700,1125" size="100,100">{&lt;img scr=&quot;https://www.dropbox.com/scl/fi/rf8rx1e5sdvj5h66srzgt/rug.jpg?rlkey=wwwlxfxctmm8x1b4zvibsprve&amp;dl=1&quot;&gt;}
@@ -261,7 +256,8 @@ You see something shiny. Another [[coin]]!
 
 [[stables]] 
 [[path]]
-[[find guard-&gt;stay]]</tw-passagedata><tw-passagedata pid="16" name="Inventory" tags="footer" position="200,0" size="100,100">&lt;div class=&quot;inventory&quot;&gt;{ (if: (passage:)&#39;s tags contains &quot;Inventory&quot;) [
+[[find guard-&gt;stay]]</tw-passagedata><tw-passagedata pid="16" name="Inventory" tags="footer" position="200,0" size="100,100">&lt;div class=&quot;inventory&quot;&gt;{(if: (passage:)&#39;s tags contains &quot;Inventory&quot;) [{(if: $gameover is 0)[(if: $health &gt; 0)[Health: $health]
+(elseif: $healthbar is 0)[(go-to: &quot;Game Over&quot;)]]}&lt;br&gt;
 You have: (for: each _item, ...$inventory) [
   (print: _item&#39;s name)(if: $inventory&#39;s last is not _item)[, ]
 ]]}&lt;/div&gt;
@@ -283,7 +279,7 @@ border-radius: 7px;
 align-items: center;
 }
 
-.save-load {
+.save-load, .health-coins {
 background: rgb(1,3,20);
 border-radius: 7px;
 padding: 10px;
@@ -293,11 +289,7 @@ padding: 10px;
 
 }&lt;div class=&quot;container&quot;&gt;&lt;div&gt;&lt;/div&gt;&lt;div class=&quot;save-load&quot;&gt;{(link:&quot;Save game&quot;)[(if:(save-game:&quot;$name&quot;))[ Game saved!](else: )[Sorry, I couldn&#39;t save your game.]]&lt;/div&gt;&lt;div class=&quot;save-load&quot;&gt;{(if: (saved-games: ) contains &quot;$name&quot;)[(link: &quot;Load game&quot;)[(load-game: &quot;$name&quot;)]
 ]}}&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-</tw-passagedata><tw-passagedata pid="17" name="Yes" tags="Inventory" position="50,300" size="100,100">{&lt;script&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="17" name="Yes" tags="Inventory" position="50,300" size="100,100">{&lt;script&gt;
 
 Sound.fade(0, 1000);
 
@@ -421,10 +413,7 @@ It&#39;s a badge that says &quot;Royal Security Guard.&quot; It&#39;s a little d
 
 [It&#39;s a slightly greasy [[screwdriver-&gt;Pick up screwdriver]]. I bet you could use this to fix something... or maybe destroy something?]
 (else:)[It&#39;s another [[coin!]]]}
-</tw-passagedata><tw-passagedata pid="37" name="HP" tags="footer" position="300,0" size="100,100">&lt;br&gt;
-(if: $gameover is 0)[(if: $health &gt; 0)[Health: $health  Coins: $money]
-(elseif: $healthbar is 0)[(go-to: &quot;Game Over&quot;)]]
-</tw-passagedata><tw-passagedata pid="38" name="Game Over" tags="" position="500,0" size="100,100">&lt;script&gt;Sound.stop();&lt;/script&gt;
+</tw-passagedata><tw-passagedata pid="37" name="HP" tags="" position="300,0" size="100,100"></tw-passagedata><tw-passagedata pid="38" name="Game Over" tags="" position="500,0" size="100,100">&lt;script&gt;Sound.stop();&lt;/script&gt;
 &lt;script&gt;Sound.play(&#39;music/private-party-seedy-30s-music-2948.mp3&#39;);&lt;/script&gt;(set: $gameover to 1)
 
 You have made a fatal mistake. [[Try again? -&gt;Start]] </tw-passagedata><tw-passagedata pid="39" name="FunJazz" tags="" position="600,0" size="100,100">https://prosearch.tribeofnoise.com/artists/show/32965/23969
@@ -635,7 +624,11 @@ Oh, and a freshly spun spider web, with a cute little spider spinning it&#39;s w
   &quot;id&quot;, 15,
   &quot;name&quot;, &quot; a basket&quot;,
   &quot;description&quot;, &quot;a sturdy wicker basket.&quot;))
-(set: $inventory to (a: $note 
+  (set: $coins to (dm:
+  &quot;id&quot;, 16,
+  &quot;name&quot;, &quot; $money coin(s)&quot;,
+  &quot;description&quot;, &quot;You could probably live off one gold coin for a week.&quot;))
+(set: $inventory to (a: $coins, $note 
 ))
 }</tw-passagedata><tw-passagedata pid="58" name="squeaks" tags="Inventory Music" position="525,975" size="100,100">{(set: $hallway to true)&lt;script&gt;Sound.stop();
 
@@ -727,7 +720,12 @@ and $found_crowbar is false)[
 &lt;/script&gt;]
 (else-if: $unplugRadio is false)[&lt;script&gt;Sound.resume();&lt;/script&gt;]
 
-
+&lt;style&gt;
+.back {
+background: rgb(1,3,20);
+text-align: center;
+border-radius: 7px;
+}&lt;/style&gt;
 &lt;!--Creepy sound plays after door when you plug radio back in.--&gt;}</tw-passagedata><tw-passagedata pid="69" name="a note" tags="menu" position="50,425" size="100,100">(box:&quot;=XxxxXxxxXxxxX=&quot;)[(font: &quot;Bradley Hand, cursive&quot;)[Meet me in Brireshire 1457
 
  If discovered, eat note.
@@ -1431,9 +1429,7 @@ The prince reaches for your hand.&lt;p class=&quot;dialog&quot;&gt;&quot;No need
 The prince lowers himself to one knee. &lt;p class=&quot;dialog&quot;&gt;&quot;Oh?&quot;&lt;/p&gt;  He reaches for your [[hand]].</tw-passagedata><tw-passagedata pid="248" name="anger" tags="" position="975,125" size="100,100">&quot;What are you //doing// sneaking up on people like that?&quot; you shout, blood rushing to your face.
 
 The prince lowers himself to one knee. &lt;p class=&quot;dialog&quot;&gt;&quot;This.&quot;&lt;/p&gt;  He reaches for your [[hand]].
-</tw-passagedata><tw-passagedata pid="249" name="hand" tags="" position="1275,125" size="100,100">He looks at you with glittering eyes.&lt;p class=&quot;dialog&quot;&gt;&quot;$name, Will you marry me?&quot;&lt;/p&gt;
-
-[[wrench your hand away]]
+</tw-passagedata><tw-passagedata pid="249" name="hand" tags="" position="1275,125" size="100,100">He looks at you with glittering eyes.&lt;p class=&quot;dialog&quot;&gt;&quot;$name, Will you marry me?&quot;&lt;/p&gt;[[wrench your hand away]]
 [[punch him]]
 [[swoon]]</tw-passagedata><tw-passagedata pid="250" name="wrench your hand away" tags="" position="1400,25" size="100,100">The Prince&#39;s lip stretches into a sneer.&lt;p class=&quot;dialog&quot;&gt;&quot;Is that a [[&#39;no&#39;-&gt;Capture]], then? We&#39;ll see about that.&quot;&lt;/p&gt;
 </tw-passagedata><tw-passagedata pid="251" name="punch him" tags="" position="1500,25" size="100,100">(set: $punch to true)The Prince gasps and brings a hand to his nose. &quot;Get her!&quot;
