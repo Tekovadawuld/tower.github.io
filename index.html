@@ -260,7 +260,8 @@ Sound.play(&#39;https://www.dropbox.com/scl/fi/9khucah02v8rk4syroers/forest-with
 You see something shiny. Another [[coin]]!
 
 [[stables]] 
-[[path]]</tw-passagedata><tw-passagedata pid="16" name="Inventory" tags="footer" position="200,0" size="100,100">&lt;div class=&quot;inventory&quot;&gt;{ (if: (passage:)&#39;s tags contains &quot;Inventory&quot;) [
+[[path]]
+[[find guard-&gt;stay]]</tw-passagedata><tw-passagedata pid="16" name="Inventory" tags="footer" position="200,0" size="100,100">&lt;div class=&quot;inventory&quot;&gt;{ (if: (passage:)&#39;s tags contains &quot;Inventory&quot;) [
 You have: (for: each _item, ...$inventory) [
   (print: _item&#39;s name)(if: $inventory&#39;s last is not _item)[, ]
 ]]}&lt;/div&gt;
@@ -360,23 +361,23 @@ A few minutes pass and you don&#39;t hear anything.
 
 [[stables]]
 [[Stay hidden]]
-[[examine hay stack]] </tw-passagedata><tw-passagedata pid="23" name="stay" tags="Inventory" position="2325,825" size="100,100">A guard rounds the corner of the tower. He&#39;s a big man with a voluminous mustache and suspicious eyes.
+[[examine hay stack]] </tw-passagedata><tw-passagedata pid="23" name="stay" tags="Inventory" position="2325,825" size="100,100">(if: $showBadge is true)[(go-to: &quot;hey guard&quot;))]A guard rounds the corner of the tower. He&#39;s a big man with a voluminous mustache and suspicious eyes.
 
 [[throw a punch]]
 [[flirt]]
 [[run]]
 [[&quot;I want to marry the prince&quot;]]
-{(cond:$found_cookie, &quot;[[bribe him with cookie]]&quot;,&quot;If only you had something to bribe him with...&quot;) &lt;br&gt;
+{(cond:$inventory contains $cookie, &quot;[[bribe him with cookie]]&quot;,&quot;If only you had something to bribe him with...&quot;) &lt;br&gt;
 (if: $inventory contains $badge) [[show badge]]&lt;br&gt;
 (if: $hasTurkish)[[give turkish delight]]&lt;br&gt;
 (if: $hasSausage)[[give sausage]]&lt;br&gt;
 (if: $hasCupcake)[[give cupcake]]&lt;br&gt;
 (if: $hasPie)[[throw mini pie]]&lt;br&gt;
-}</tw-passagedata><tw-passagedata pid="24" name="bribe him with cookie" tags="Inventory Ending" position="2600,525" size="100,100">(set: $inventory to it - (a: &quot;cookie&quot;))(set: $found_cookie to false)You pull out your cookie. I can&#39;t believe you haven&#39;t eaten that by now. I mean seriously, isn&#39;t it stale yet?
+}</tw-passagedata><tw-passagedata pid="24" name="bribe him with cookie" tags="Inventory Ending" position="2600,525" size="100,100">(set: $inventory to it - (a: $cookie))(set: $found_cookie to false)You pull out your cookie. I can&#39;t believe you haven&#39;t eaten that by now. I mean seriously, isn&#39;t it stale yet?
 
-Anyway, you offer the horribly stale pastry to the gaurd in return for your freedom. Fortunately for you, this gaurd happens to love stale cookies.
+Anyway, you offer the horribly stale pastry to the gaurd in return for your freedom. Fortunately for you, this guard happens to love stale cookies.
 
-[[Continue-&gt;CONTINUED...]] </tw-passagedata><tw-passagedata pid="25" name="throw a punch" tags="Inventory" position="2700,675" size="100,100">You throw a punch as the guard rounds the corner. Ouch. His armor is a lot harder than you expected.
+[[Forest Path-&gt;CONTINUED...]] </tw-passagedata><tw-passagedata pid="25" name="throw a punch" tags="Inventory" position="2700,675" size="100,100">You throw a punch as the guard rounds the corner. Ouch. His armor is a lot harder than you expected.
 
 (text-colour:#33CCCC)[&quot;Hey! I just had this plate polished. You&#39;re going [[back-&gt;Yes]] were you belong.&quot;]
 
@@ -452,13 +453,12 @@ The hair is rough and frayed, but you drape it around your shoulders. You desper
 [[wooden desk]] 
 [[look around the tower]] </tw-passagedata><tw-passagedata pid="44" name="coin!" tags="" position="825,250" size="100,100">(set:$money to it +1)
 (go-to: &quot;drawer&quot;)
-</tw-passagedata><tw-passagedata pid="45" name="show badge" tags="Inventory" position="2375,325" size="100,100">The guard stops in his tracks, frowning so much he looks like a pug drooling over beef stew. 
+</tw-passagedata><tw-passagedata pid="45" name="show badge" tags="Inventory" position="2375,325" size="100,100">(set: $showBadge to true)The guard stops in his tracks, frowning so much he looks like a pug drooling over beef stew. 
 
 (text-colour:#33CCCC)[&quot;Oh, you must be the new hire.&quot; He shakes his head. &quot;I thought for sure you must be that girl he has holed up in the tower. But I guess not. Have you seen anything suspicious?&quot;]
 
 [[&quot;Uh, nope.&quot;]]
-[[&quot;Yes.&quot;]]
-[[run]] </tw-passagedata><tw-passagedata pid="46" name="&quot;Uh, nope.&quot;" tags="Inventory" position="2475,150" size="100,100">The guard stares at you for a long moment and you (text-style: &quot;sway&quot;)[shift] nervously.
+[[&quot;Yes.&quot;]]</tw-passagedata><tw-passagedata pid="46" name="&quot;Uh, nope.&quot;" tags="Inventory" position="2475,150" size="100,100">The guard stares at you for a long moment and you (text-style: &quot;sway&quot;)[shift] nervously.
 
 (text-colour:#33CCCC)[&quot;You look a lot like that tower girl. Messy hair, grease stains, and a snarky expression. I&#39;m gonna have to take you to see the boss.&quot;]
 
@@ -510,6 +510,8 @@ Oh, and a freshly spun spider web, with a cute little spider spinning it&#39;s w
 [[enter hallway-&gt;squeaks]]
 [[look around the tower]] </tw-passagedata><tw-passagedata pid="57" name="startup" tags="startup" position="100,100" size="100,100">(set: $name to (prompt: &quot;Welcome to the Grand Gala, miss...?&quot;, &quot;Raven&quot;))
 {(set:$inventory to (a:))
+(set: $showBadge to false)
+(set: $bribe to false)
 (set: $basket to (a:))
 (set: $health to 200)
 (set: $money to 0)
@@ -827,16 +829,14 @@ Looks like your free to [[escape-&gt;CONTINUED...]].</tw-passagedata><tw-passage
 </tw-passagedata><tw-passagedata pid="96" name="&quot;But everyone loves cupcakes.&quot;" tags="Ending" position="2700,875" size="100,100">&lt;script&gt;Sound.stop();&lt;/script&gt;
 &lt;script&gt;Sound.play(&#39;music/private-party-seedy-30s-music-2948.mp3&#39;);&lt;/script&gt;The guard looks as if you just insulted his family name. You watch with horror as he slaps the cupcake to the ground, it&#39;s creamy frosting splattering on your mud caked shoe.
 
-He points his spear at you. (text-colour:#33CCCC)[&quot;Back in the tower, missy.&quot;]
-
-[[You messed up. Try again?-&gt;Yes]]</tw-passagedata><tw-passagedata pid="97" name="eat cupcake" tags="Ending" position="2700,775" size="100,100">&lt;script&gt;Sound.stop();&lt;/script&gt;
+He points his spear at you. (text-colour:#33CCCC)[&quot;(if: $showBadge is true)[I happen to hate cupcakes, especially the ones from that tower. ]Back in [[the tower-&gt;look around the tower]], missy.&quot;]</tw-passagedata><tw-passagedata pid="97" name="eat cupcake" tags="Ending" position="2700,775" size="100,100">&lt;script&gt;Sound.stop();&lt;/script&gt;
 &lt;script&gt;Sound.play(&#39;https://www.dropbox.com/scl/fi/vtphefh4tmyki91igeobm/desire-for-freedom.mp3?rlkey=eajsa01afuqq0qm6h9qnu6sih&amp;dl=1&#39;);&lt;/script&gt;The creamy goodness of the cupcake washes over you, even as the guard points his spear at you.
 
-(text-colour:#33CCCC)[&quot;Back in the tower you go.&quot;]
+{(text-colour:#33CCCC)[&quot;(if: $showBadge is true)[That cupcake&#39;s from the tower! ]Back you go, Missy.&quot;]}
 
 The taste of the cupcake lingers even as you are transported back to [[the tower-&gt;look around the tower]].</tw-passagedata><tw-passagedata pid="98" name="throw mini pie" tags="" position="2600,725" size="100,100">The pie lands with a //splat// on the guard&#39;s nose. He brandishes his spear at you while licking the drips of apple filling off his chin.
 
-(text-colour:#33CCCC)[[[&quot;Back in the tower you miscreant!&quot;-&gt;Yes]]]</tw-passagedata><tw-passagedata pid="99" name="broken hook" tags="Inventory" position="1250,800" size="100,100">{&lt;img src=&quot;https://www.dropbox.com/scl/fi/vc3xswtenf0rm0bzc4kiq/window.jpg?rlkey=ef801l8l9ytzndx1hzog9fy7c&amp;dl=1&quot;&gt;}Looks like the hook snapped right off of the fastening.
+(text-colour:#33CCCC)[[[&quot;Back in the tower you miscreant!&quot;-&gt;look around the tower]]]</tw-passagedata><tw-passagedata pid="99" name="broken hook" tags="Inventory" position="1250,800" size="100,100">{&lt;img src=&quot;https://www.dropbox.com/scl/fi/vc3xswtenf0rm0bzc4kiq/window.jpg?rlkey=ef801l8l9ytzndx1hzog9fy7c&amp;dl=1&quot;&gt;}Looks like the hook snapped right off of the fastening.
 
 [[back-&gt;window]]</tw-passagedata><tw-passagedata pid="100" name="look out window" tags="Inventory" position="1250,700" size="100,100">&lt;img src=&quot;https://www.dropbox.com/scl/fi/vc3xswtenf0rm0bzc4kiq/window.jpg?rlkey=ef801l8l9ytzndx1hzog9fy7c&amp;dl=1&quot;&gt;
 You know, none of this would have happened if you had stayed home the night of the [[Grand Gala]].
@@ -954,14 +954,14 @@ left side (click-replace: &quot;left side&quot;)[Something slimy coats your hand
 You found a [[lighter-&gt;stairs 2]].</tw-passagedata><tw-passagedata pid="132" name="stairs 2" tags="Inventory" position="325,1575" size="100,100">The stairs are too rotted to traverse. (if: (visited: &quot;attach hair to hook and climb down&quot;)) [But you might be able to [[climb down-&gt;jump]] the handrail.]
 [[back-&gt;hallway]]</tw-passagedata><tw-passagedata pid="133" name="hallway" tags="Inventory" position="325,1475" size="100,100">(set: $hallway to true)The light that flickers from the overhead lights is dim, but at least it reveals that the &quot;crunch&quot; from before wasn&#39;t pretzels or bones. 
 
-(if: $basket does not contain (a: &quot;candles&quot;))[Long (if: $hasCandle)[candles](else:)[[candles]] litter the narrow hallway like pepsi cans on an abandoned freeway. 
+(if: $candleBasket is false)[Long (if: $inventory contains $candle)[candles](else:)[[candles]] litter the narrow hallway like pepsi cans on an abandoned freeway. 
 {(if: $inventory contains $basket and $candleBasket is false)[[[Put candlesticks in basket.-&gt;candle basket]]]}]
 
 There are some [[stairs-&gt;stairs 2]] at the end of the hallway.
 
 There&#39;s not much else here. You may as well [[go back-&gt;back to tower]].</tw-passagedata><tw-passagedata pid="134" name="candles" tags="Inventory" position="325,1675" size="100,100">[[Take candle]]?
 
-[[Nah.-&gt;hallway]]</tw-passagedata><tw-passagedata pid="135" name="Take candle" tags="Inventory" position="150,1675" size="100,100">(set: $hasCandle to true)(set: $inventory to it + (a: $candle))
+[[Nah.-&gt;hallway]]</tw-passagedata><tw-passagedata pid="135" name="Take candle" tags="Inventory" position="150,1675" size="100,100">(if: $hasCandle is false and $inventory does not contain $candle)[(set: $hasCandle to true)(set: $inventory to it + (a: $candle))]
 
 The overhead lights flicker and a tiny spark land on the candle. The wick [[catches.-&gt;flame]]</tw-passagedata><tw-passagedata pid="136" name="Test" tags="" position="300,150" size="100,100">{(set: $inventory to it + (a: $screwdriver))
 (set: $inventory to it + (a: $crowbar))
@@ -1054,7 +1054,7 @@ Ayana&#39;s eyebrow shoots up. (text-colour:#33CCCC)[&quot;And you said no?&quot
 
 She puts an arm around your shoulder.(text-colour:#33CCCC)[ &quot;Does it have something to do with this candle? I&#39;ve certainly never seen anything like it before...&quot;]
 
-You smile. Youre glad your sister finally seems happy to see you, but something feels off about the [[moment.]]</tw-passagedata><tw-passagedata pid="154" name="Sure!" tags="" position="975,1500" size="100,100">You start to hand the candle to her, but a gust of wind blows it out. And then you find yourself [[back in the tower.-&gt;look around the tower]]</tw-passagedata><tw-passagedata pid="155" name="Nope" tags="" position="1025,1700" size="100,100">Ayana frowns. (text-colour:#33CCCC)[&quot;You&#39;re pretty protective of your candle then. Where did you get it?&quot;]
+You smile. Youre glad your sister finally seems happy to see you, but something feels off about the [[moment.]]</tw-passagedata><tw-passagedata pid="154" name="Sure!" tags="" position="975,1500" size="100,100">You start to hand the candle to her, but a gust of wind blows it out. And then you find yourself [[back in the tower.-&gt;She snuffs out the flame.]]</tw-passagedata><tw-passagedata pid="155" name="Nope" tags="" position="1025,1700" size="100,100">Ayana frowns. (text-colour:#33CCCC)[&quot;You&#39;re pretty protective of your candle then. Where did you get it?&quot;]
 
 [[&quot;The tower.&quot;]]
 [[&quot;None of your business.&quot;]]</tw-passagedata><tw-passagedata pid="156" name="&quot;The tower.&quot;" tags="" position="1025,1800" size="100,100">Both of Ayana&#39;s eyebrows shoot up this time. (text-colour:#33CCCC)[&quot;Oh? Are there more of them?&quot;]
@@ -1068,15 +1068,15 @@ You smile. Youre glad your sister finally seems happy to see you, but something 
 
 [[She snuffs out the flame.]]</tw-passagedata><tw-passagedata pid="159" name="moment." tags="" position="1125,1700" size="100,100">Ayana snatches the candle, eyes relfecting the orange flame. (text-colour:#33CCCC)[&quot;I just want to see it. Let me try something.&quot;]
 
-[[She snuffs out the flame.]]</tw-passagedata><tw-passagedata pid="160" name="She snuffs out the flame." tags="" position="1225,1750" size="100,100">&lt;script&gt;Sound.resume();&lt;/script&gt;You blink and you are back in the hallway. [[Put candle in pocket]].</tw-passagedata><tw-passagedata pid="161" name="Would you have said yes?" tags="" position="975,1400" size="100,100">(text-colour:#33CCCC)[&quot;Of course!&quot;] Ayana exclaims. (text-colour:#33CCCC)[&quot;He&#39;s only the richest man in the kingdom.&quot;]
+[[She snuffs out the flame.]]</tw-passagedata><tw-passagedata pid="160" name="She snuffs out the flame." tags="" position="1225,1775" size="100,100">&lt;script&gt;Sound.resume();&lt;/script&gt;You blink and you are back in the hallway. [[Put candle in pocket]].</tw-passagedata><tw-passagedata pid="161" name="Would you have said yes?" tags="" position="975,1400" size="100,100">(text-colour:#33CCCC)[&quot;Of course!&quot;] Ayana exclaims. (text-colour:#33CCCC)[&quot;He&#39;s only the richest man in the kingdom.&quot;]
 
 She eyes the candle and you notice a drip descending toward your hand.
 (text-colour:#33CCCC)[&quot;So how&#39;d you get out?&quot;]
 
 [[tell her]]
-[[don&#39;t tell her]]</tw-passagedata><tw-passagedata pid="162" name="CONTINUED..." tags="Inventory" position="2725,350" size="100,100">(set: $weather to &quot;rain&quot;)As soon you start down the forest path, rain starts pelting you from above. You might want to find some shelter.
+[[don&#39;t tell her]]</tw-passagedata><tw-passagedata pid="162" name="CONTINUED..." tags="Inventory" position="2725,350" size="100,100">(if: visit is 1)[(set: $weather to &quot;rain&quot;)As soon you start down the forest path, rain starts pelting you from above. You might want to find some shelter.
 
-For now, you put your hood up and [[continue]] down the path(if: $ridePig is true)[ on your pig].</tw-passagedata><tw-passagedata pid="163" name="path-left" tags="Inventory" position="2825,550" size="100,100">A pair of eyes glare at you through the bushes as you go past. You speed up.
+For now, you put your hood up and [[continue]] down the path(if: $ridePig is true)[ on your pig].](else:)[(go-to: &quot;continue&quot;)]</tw-passagedata><tw-passagedata pid="163" name="path-left" tags="Inventory" position="2825,550" size="100,100">A pair of eyes glare at you through the bushes as you go past. You speed up.
 (click-append: &quot;speed up.&quot;)[ 
 
 (if: $ridePig is true)[Your pig trips over a root, but recovers](else:)[You trip over a root, but you recover]. You have arrived at a cottage, smoke billowing out of the stone chimney.
@@ -1270,10 +1270,9 @@ You&#39;re left with a strange feeling as she walks away. Did you do the right t
 
 END OF GAME
 [[credits]]
-(icon-restart: &quot;Explore a New Path&quot;)</tw-passagedata><tw-passagedata pid="204" name="&quot;I want to marry the prince&quot;" tags="Inventory" position="2025,325" size="100,100">The guard&#39;s eybrows draw together. (text-colour:#33CCCC)[&quot;Who are you? You&#39;re not trying to off the prince&#39;s betrothed, are you?&quot;]
+(icon-restart: &quot;Explore a New Path&quot;)</tw-passagedata><tw-passagedata pid="204" name="&quot;I want to marry the prince&quot;" tags="Inventory" position="2025,325" size="100,100">(if: $showBadge is true)[The guard lets out a bark of laughter. (text-colour:#33CCCC)[&quot;Ha! Tell that to that tower girl. I bet she&#39;ll gladly switch you places.&quot;]&lt;br&gt;[[&quot;No, I&#39;m the girl from the tower.&quot;]]](else:)[The guard&#39;s eybrows draw together. (text-colour:#33CCCC)[[[&quot;Come with me.&quot;-&gt;come with me]]]]
 
-[[&quot;No, I&#39;m the girl from the tower.&quot;]]
-[[run]] </tw-passagedata><tw-passagedata pid="205" name="&quot;No, I&#39;m the girl from the tower.&quot;" tags="Inventory" position="2025,225" size="100,100">The guard&#39;s face slackens in understanding. (text-colour:#33CCCC)[&quot;Oh, if that&#39;s the case, [[come with me]].&quot;]</tw-passagedata><tw-passagedata pid="206" name="come with me" tags="Inventory" position="2025,125" size="100,100">You soon find yourself in the castle, face to face with Prince Tehkovadawuhld. (if: $punch is true)[You&#39;re happy to see he still has a purple bruise on his nose.]
+ </tw-passagedata><tw-passagedata pid="205" name="&quot;No, I&#39;m the girl from the tower.&quot;" tags="Inventory" position="2025,225" size="100,100">The guard&#39;s face slackens in understanding. (text-colour:#33CCCC)[&quot;Oh, if that&#39;s the case, [[come with me]].&quot;]</tw-passagedata><tw-passagedata pid="206" name="come with me" tags="Inventory" position="2025,125" size="100,100">You soon find yourself in the castle, face to face with Prince Tehkovadawuhld. (if: $punch is true)[You&#39;re happy to see he still has a purple bruise on his nose.]
 
 He stands as you enter the room, guards on either side of you.
 
@@ -1334,7 +1333,17 @@ Before you can say anything, he scoops you up in his arms. (text-colour:#33CCCC)
 
 [[lean in for a kiss]]
 [[throw candle at him]]
-</tw-passagedata><tw-passagedata pid="214" name="Untitled Passage 2" tags="" position="2600,1250" size="100,100"></tw-passagedata><tw-passagedata pid="215" name="but..." tags="" position="2125,225" size="100,100">&quot;...do you want to get married for real?&quot; The words spill out of you mouth.
+</tw-passagedata><tw-passagedata pid="214" name="hey guard" tags="" position="2350,425" size="100,100">&quot;See anything suspicious?&quot; The guard asks.
+
+[[&quot;Uh, nope.&quot;]]
+[[&quot;Yes.&quot;]]
+[[&quot;I want to marry the prince&quot;]]
+{(cond:$found_cookie, &quot;[[bribe him with cookie]]&quot;,&quot;If only you had something to bribe him with...&quot;) &lt;br&gt;
+(if: $hasTurkish)[[give turkish delight]]&lt;br&gt;
+(if: $hasSausage)[[give sausage]]&lt;br&gt;
+(if: $hasCupcake)[[give cupcake]]&lt;br&gt;
+(if: $hasPie)[[throw mini pie]]&lt;br&gt;
+}</tw-passagedata><tw-passagedata pid="215" name="but..." tags="" position="2125,225" size="100,100">&quot;...do you want to get married for real?&quot; The words spill out of you mouth.
 
 (text-colour:#33CCCC)[&quot;Ha! So you //do// want to marry me!] The prince&#39;s smile widens. (text-colour:#33CCCC)[&quot;Maybe if you ask nicely...&quot;]
 
