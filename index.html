@@ -887,7 +887,7 @@ The taste of the cupcake lingers even as you are transported back to [[the tower
 [[back-&gt;window]]</tw-passagedata><tw-passagedata pid="100" name="look out window" tags="Inventory" position="1250,700" size="100,100">&lt;img src=&quot;https://www.dropbox.com/scl/fi/vc3xswtenf0rm0bzc4kiq/window.jpg?rlkey=ef801l8l9ytzndx1hzog9fy7c&amp;dl=1&quot;&gt;
 You know, none of this would have happened if you had stayed home the night of the [[Grand Gala]].
 
-Basically all you see is trees. The sun is starting to set. Better get outta [[here-&gt;window]] soon.</tw-passagedata><tw-passagedata pid="101" name="Eat cookie? " tags="" position="150,825" size="100,100">(set: $found_cookie to false)(print: $cookie&#39;s description)[[back-&gt;a cookie]]</tw-passagedata><tw-passagedata pid="102" name="Last Passage Tracking" tags="header" position="0,0" size="100,100">(if: not ((passage:)&#39;s tags contains &quot;menu&quot;))[(set: $lastPassage to (passage:)&#39;s name)]</tw-passagedata><tw-passagedata pid="103" name="unplug radio" tags="Inventory" position="1050,550" size="100,100">(set: $unplugRadio to true)
+Basically all you see is trees. The sun is starting to set. Better get outta [[here-&gt;window]] soon.</tw-passagedata><tw-passagedata pid="101" name="Eat cookie? " tags="" position="150,825" size="100,100">(set: $found_cookie to false)(print: $cookie&#39;s description)[[back-&gt;a cookie]]</tw-passagedata><tw-passagedata pid="102" name="Last Passage Tracking" tags="header" position="0,0" size="100,100">(if: not ((passage:)&#39;s tags contains &quot;menu&quot;))[(set: $lastPassage to (passage:)&#39;s name)]</tw-passagedata><tw-passagedata pid="103" name="unplug radio" tags="Inventory" position="1050,550" size="100,100">(set: $unplugRadio to true)(set: $channel1 to false)(set: $channel2 to false)(set: $channel3 to false)(set: $channel4 to false)
 (go-to: &quot;old radio&quot;)</tw-passagedata><tw-passagedata pid="104" name="under radio" tags="Inventory" position="1150,450" size="100,100">There&#39;s some dust. There are four screws on the bottom of the radio.(if: $found_screwdriver is true and $fixedRadio is false)[ You could use your [[screwdriver-&gt;Radio panel]] here.]
 (else-if: $fixedRadio is true)[Ya know, you&#39;re really good at fixing things.]
 
@@ -1119,7 +1119,7 @@ The woman cranks up an eyebrow. (text-colour:#33CCCC)[&quot;//You&#39;re// offer
 
 She grabs you arm and pulls you [[inside-&gt;pies]].</tw-passagedata><tw-passagedata pid="165" name="rob her" tags="Inventory" position="2825,775" size="100,100">You brandish the crowbar at the old woman. &quot;Give me all your money!&quot; you scream.
 
-She cowers in fright. (text-colour:#33CCCC)[[&quot;I-I don&#39;t have much. Just take what you want and leave me alone!&quot;]
+She cowers in fright. (text-colour:#33CCCC)[&quot;I-I don&#39;t have much. Just take what you want and leave me alone!&quot;]
 
 [[steal stuff]]
 [[&quot;Haha, I was just kidding...&quot;-&gt;kidding]]</tw-passagedata><tw-passagedata pid="166" name="steal stuff" tags="Inventory" position="2825,900" size="100,100">You step into the house and see an orderly kitchen, a steaming pie on the table, and an old fashioned television. 
@@ -1425,8 +1425,8 @@ The Prince blanches. (text-colour:#33CCCC)[&quot;Ha! So you //did// steal it. Bu
 [[&quot;I just... tried different things.&quot;-&gt;&quot;Well you did.&quot;]]
 </tw-passagedata><tw-passagedata pid="235" name="Untitled Passage 3" tags="" position="2625,1350" size="100,100"></tw-passagedata><tw-passagedata pid="236" name="pass." tags="" position="775,25" size="100,100">You walk onto the staircase and everyone stares at you. There is no music, just a bunch of guests standing awkwardly and a rather frazzled looking DJ in the [[corner]].</tw-passagedata><tw-passagedata pid="237" name="corner" tags="" position="875,25" size="100,100">You approach the DJ, who is dressed to the nines in a red ballgown and gold-rimmed glasses.
 
-[[&quot;What&#39;s going on?&quot;]]</tw-passagedata><tw-passagedata pid="238" name="&quot;What&#39;s going on?&quot;" tags="" position="975,25" size="100,100">She rubs her forehead. &lt;p class=&quot;dialog&quot;&gt;&quot;My mix-board is fried. It was working fine earlier.&quot;&lt;/p&gt;[[&quot;Can I help?&quot;]]</tw-passagedata><tw-passagedata pid="239" name="&quot;Can I help?&quot;" tags="" position="1075,25" size="100,100">Her eye widen in relief. 
-&lt;div class=&quot;dialog&quot;&gt;&quot;Yes, please! I&#39;m worried that if I don&#39;t fix my mix-board soon, I&#39;ll be fired.&quot;&lt;/div&gt;
+[[&quot;What&#39;s going on?&quot;]]</tw-passagedata><tw-passagedata pid="238" name="&quot;What&#39;s going on?&quot;" tags="" position="975,25" size="100,100">She rubs her forehead. &lt;p class=&quot;dialog&quot;&gt;&quot;My mix-board is fried. It was working fine earlier.&quot;&lt;/p&gt;[[&quot;Can I help?&quot;]]</tw-passagedata><tw-passagedata pid="239" name="&quot;Can I help?&quot;" tags="" position="1075,25" size="100,100">Her eyes widen in relief. 
+&lt;div class=&quot;dialog&quot;&gt;&quot;Yes, please! If I don&#39;t fix my mix-board soon, I&#39;ll be fired.&quot;&lt;/div&gt;
 
 [[inspect mix-board]]</tw-passagedata><tw-passagedata pid="240" name="fix mix-board" tags="" position="925,0" size="100,100"></tw-passagedata><tw-passagedata pid="241" name="inspect mix-board" tags="" position="1175,25" size="100,100">It&#39;s a pretty old device, but so is everything here in Post-Technia.
 
