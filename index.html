@@ -216,11 +216,14 @@ if (typeof Sound == "undefined") {
 :)</tw-passagedata><tw-passagedata pid="4" name="window" tags="Inventory" position="1150,750" size="100,100">The window isn&#39;t too small to fit through. Even so, it&#39;s much too high to jump from. (if: $money &lt; 1) [ A [[small coin]] on the window ledge catches your eye.]
 
 (cond: $trickCoin, &quot; The [[broken hook]] on the side of the window fills you with hopelessness.&quot;, &quot; There&#39;s an old rusty hook fastened to the side of the window.&quot;)
-&lt;img src=&quot;https://www.dropbox.com/scl/fi/vc3xswtenf0rm0bzc4kiq/window.jpg?rlkey=ef801l8l9ytzndx1hzog9fy7c&amp;dl=1&quot;&gt;
+
 (if:$inventory contains $hair)[[attach hair to hook and climb down]] 
 (if: $trickCoin)[[jump out of window]]
 [[look out window]]
 [[back-&gt;look around the tower]]
+
+&lt;img src=&quot;https://www.dropbox.com/scl/fi/vc3xswtenf0rm0bzc4kiq/window.jpg?rlkey=ef801l8l9ytzndx1hzog9fy7c&amp;dl=1&quot;&gt;
+
 
 
 
@@ -1062,7 +1065,14 @@ The taste of the cupcake lingers even as you are transported back to [[the tower
 [[back-&gt;window]]</tw-passagedata><tw-passagedata pid="100" name="look out window" tags="Inventory" position="1250,700" size="100,100">&lt;img src=&quot;https://www.dropbox.com/scl/fi/vc3xswtenf0rm0bzc4kiq/window.jpg?rlkey=ef801l8l9ytzndx1hzog9fy7c&amp;dl=1&quot;&gt;
 You know, none of this would have happened if you had stayed home the night of the [[Grand Gala]].
 
-Basically all you see is trees. The sun is starting to set. Better get outta [[here-&gt;window]] soon.</tw-passagedata><tw-passagedata pid="101" name="Eat cookie? " tags="" position="150,825" size="100,100">(set: $found_cookie to false)(print: $cookie&#39;s description)[[back-&gt;a cookie]]</tw-passagedata><tw-passagedata pid="102" name="Last Passage Tracking" tags="header" position="0,0" size="100,100">(if: not ((passage:)&#39;s tags contains &quot;menu&quot;))[(set: $lastPassage to (passage:)&#39;s name)]</tw-passagedata><tw-passagedata pid="103" name="unplug radio" tags="Inventory" position="1050,600" size="100,100">(set: $unplugRadio to true)(set: $channel1 to false)(set: $channel2 to false)(set: $channel3 to false)(set: $channel4 to false)
+Basically all you see is trees. The sun is starting to set. Better get outta [[here-&gt;window]] soon.
+
+
+
+
+
+
+:)</tw-passagedata><tw-passagedata pid="101" name="Eat cookie? " tags="" position="150,825" size="100,100">(set: $found_cookie to false)(print: $cookie&#39;s description)[[back-&gt;a cookie]]</tw-passagedata><tw-passagedata pid="102" name="Last Passage Tracking" tags="header" position="0,0" size="100,100">(if: not ((passage:)&#39;s tags contains &quot;menu&quot;))[(set: $lastPassage to (passage:)&#39;s name)]</tw-passagedata><tw-passagedata pid="103" name="unplug radio" tags="Inventory" position="1050,600" size="100,100">(set: $unplugRadio to true)(set: $channel1 to false)(set: $channel2 to false)(set: $channel3 to false)(set: $channel4 to false)
 (go-to: &quot;old radio&quot;)</tw-passagedata><tw-passagedata pid="104" name="under radio" tags="Inventory" position="1150,500" size="100,100">There&#39;s some dust. There are four screws on the bottom of the radio.(if: $found_screwdriver is true and $fixedRadio is false)[ You could use your [[screwdriver-&gt;Radio panel]] here.]
 (else-if: $fixedRadio is true)[Ya know, you&#39;re really good at fixing things.]
 
@@ -1132,7 +1142,12 @@ You [[release her-&gt;stables]] and she scrambles away.
 
 
 
-:)</tw-passagedata><tw-passagedata pid="115" name="Grand Gala" tags="Inventory" position="1350,800" size="100,100">I mean seriously, the moment you fixed the DJ&#39;s ancient mix-board, you were [[done-for-&gt;look out window]].</tw-passagedata><tw-passagedata pid="116" name="eyes widen" tags="Inventory" position="1875,1300" size="100,100">Her eyes widen as you limp on your $leg leg. (text-colour:#33CCCC)[&quot;And you jumped out of the tower!&quot;]
+:)</tw-passagedata><tw-passagedata pid="115" name="Grand Gala" tags="Inventory" position="1350,800" size="100,100">I mean seriously, the moment you fixed the DJ&#39;s ancient mix-board, you were [[done-for-&gt;look out window]].
+
+
+
+
+:)</tw-passagedata><tw-passagedata pid="116" name="eyes widen" tags="Inventory" position="1875,1300" size="100,100">Her eyes widen as you limp on your $leg leg. (text-colour:#33CCCC)[&quot;And you jumped out of the tower!&quot;]
 
 [[&quot;No I didn&#39;t.&quot;]]
 [[&quot;Yes, and I need your help.&quot;]]
