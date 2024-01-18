@@ -220,7 +220,14 @@ if (typeof Sound == "undefined") {
 (if:$inventory contains $hair)[[attach hair to hook and climb down]] 
 (if: $trickCoin)[[jump out of window]]
 [[look out window]]
-[[back-&gt;look around the tower]]</tw-passagedata><tw-passagedata pid="5" name="wooden desk" tags="Inventory" position="825,725" size="100,100">The desk is old and worn with a [[drawer]].  
+[[back-&gt;look around the tower]]
+
+
+
+
+
+
+:}</tw-passagedata><tw-passagedata pid="5" name="wooden desk" tags="Inventory" position="825,725" size="100,100">The desk is old and worn with a [[drawer]].  
 There&#39;s also an [[old radio]] 
 {(if: $hasBasket is false)[and a nice looking wicker [[basket]].]
 (if: $inventory does not contain $basket and $AyanaMeet is true)[[[take basket-&gt;take bskt]]]}
@@ -290,6 +297,8 @@ Sound.play(&#39;https://www.dropbox.com/scl/fi/9khucah02v8rk4syroers/forest-with
 A pile of [[hay-&gt;examine hay stack]] cushions your fall, though you hear a sickening &quot;crunch&quot;. You survived, but your leg is probably broken. 
 
 There are some [[stables]] to the right and a forest [[path]] to the left.
+
+
 
 
 
@@ -420,7 +429,13 @@ Well. That didn&#39;t work.</tw-passagedata><tw-passagedata pid="27" name="find 
 
 [[back-&gt;stables]]
 (if: $hasPie is true)[Give it a [[mini pie]]]
-(if: $hasTurkish is true)[Give it [[turkish delight-&gt;magic pig]]]</tw-passagedata><tw-passagedata pid="29" name="oversized painting" tags="Inventory" position="1400,350" size="100,100">(if: $destroyPainting is true)[Somehow, the rips in the canvas make the painting better.](else:)[Prince Tehkovadawuhld&#39;s portrait certainly does him justice. It captures his broad shoulders and charming face. Too bad he has a terrible personality.
+(if: $hasTurkish is true)[Give it [[turkish delight-&gt;magic pig]]]
+
+
+
+
+
+:)</tw-passagedata><tw-passagedata pid="29" name="oversized painting" tags="Inventory" position="1400,350" size="100,100">(if: $destroyPainting is true)[Somehow, the rips in the canvas make the painting better.](else:)[Prince Tehkovadawuhld&#39;s portrait certainly does him justice. It captures his broad shoulders and charming face. Too bad he has a terrible personality.
 
 &lt;img src=&quot;https://www.dropbox.com/scl/fi/o60ux0eeaxsso6hbo4srg/painting.jpg?rlkey=h7hudtjostmy7d0f42t4p1r4h&amp;dl=1&quot;&gt;]
 A spider scurries [[behind the painting]].
@@ -430,11 +445,20 @@ A spider scurries [[behind the painting]].
 
 
 
+
+
 :)
 </tw-passagedata><tw-passagedata pid="30" name="Stay hidden" tags="Inventory" position="2225,725" size="100,100">You wait, but you feel something crawling up your arm. Hopefully it isn&#39;t a spider.
 
 [[stables]]
-[[examine hay stack]]</tw-passagedata><tw-passagedata pid="31" name="fix motorcycle" tags="Inventory" position="2175,1400" size="100,100">{(if:$inventory contains $screwdriver)[
+[[examine hay stack]]
+
+
+
+
+
+
+:)</tw-passagedata><tw-passagedata pid="31" name="fix motorcycle" tags="Inventory" position="2175,1400" size="100,100">{(if:$inventory contains $screwdriver)[
 [[Unscrew back panel]]]
 (else:) [In order to fix this baby, you&#39;re gonna need a screwdriver.  But where to find one?]} 
 
@@ -480,7 +504,14 @@ The hair is rough and frayed, but you drape it around your shoulders. You desper
 [[look around the tower]] </tw-passagedata><tw-passagedata pid="41" name="coin" tags="" position="2525,1025" size="100,100">(set:$money to it +1)(set: $trickCoin to true)
 (go-to: &quot;look around the tower&quot;)</tw-passagedata><tw-passagedata pid="42" name="destroy painting" tags="Inventory" position="1500,350" size="100,100">(set: $destroyPainting to true)You ram the screwdriver through the flimsy canvas, relishing in the sound it makes as it tears. You feel much better now.
 
-(link-goto: &quot;Return&quot;, (history:)&#39;s last)</tw-passagedata><tw-passagedata pid="43" name="Pick up screwdriver" tags="Inventory" position="700,425" size="100,100">(set: $inventory to it + (a: $screwdriver))(set:$found_screwdriver to true)The screwdriver&#39;s grease coats your fingers, but you put it in your pocket anyway. As a mechanic, you&#39;re used to grease.
+(link-goto: &quot;Return&quot;, (history:)&#39;s last)
+
+
+
+
+
+
+*</tw-passagedata><tw-passagedata pid="43" name="Pick up screwdriver" tags="Inventory" position="700,425" size="100,100">(set: $inventory to it + (a: $screwdriver))(set:$found_screwdriver to true)The screwdriver&#39;s grease coats your fingers, but you put it in your pocket anyway. As a mechanic, you&#39;re used to grease.
 
 [[wooden desk]] 
 [[look around the tower]] </tw-passagedata><tw-passagedata pid="44" name="coin!" tags="" position="825,375" size="100,100">(set:$money to it +1)
@@ -509,17 +540,35 @@ The guard nods and marches toward the hay stack
 
 [[&quot;I&#39;m gonna go check the stables&quot;-&gt;stables]]
 [[I&#39;d better take a look at that hay stack over there&quot;-&gt;examine hay stack]] 
-[[run-&gt;forest path]]</tw-passagedata><tw-passagedata pid="49" name="&quot;Woah, what in the world is that??&quot;" tags="Inventory" position="2275,325" size="100,100">You point to the forest and the guard is momentarily distracted while you duck back into the [[stables]].</tw-passagedata><tw-passagedata pid="50" name="forest path" tags="Inventory" position="2275,125" size="100,100">(text-colour:#33CCCC)[&quot;Hey, get back here,&quot;] the guard says. (text-colour:#33CCCC)[&quot;You&#39;re not off duty yet.&quot;]
+[[run-&gt;forest path]]</tw-passagedata><tw-passagedata pid="49" name="&quot;Woah, what in the world is that??&quot;" tags="Inventory" position="2275,325" size="100,100">You point to the forest and the guard is momentarily distracted while you duck back into the [[stables]].
+
+
+
+
+
+</tw-passagedata><tw-passagedata pid="50" name="forest path" tags="Inventory" position="2275,125" size="100,100">(text-colour:#33CCCC)[&quot;Hey, get back here,&quot;] the guard says. (text-colour:#33CCCC)[&quot;You&#39;re not off duty yet.&quot;]
 
 You&#39;re too slow with your injured leg. Better find another way out.
 
 [[&quot;I&#39;m gonna go check the stables-&gt;stables]]
 [[&quot;I&#39;d better take a look at that hay stack over there&quot;-&gt;examine hay stack]] 
-[[&quot;Woah, what in the world is that??&quot;]]</tw-passagedata><tw-passagedata pid="51" name="limp into the forest" tags="Inventory Ending" position="2475,350" size="100,100">The guard is so distracted he doesn&#39;t hear you limp slowly into the forest. You don&#39;t hear his voice until you are safely hidden behind a tree.
+[[&quot;Woah, what in the world is that??&quot;]]
+
+
+
+
+
+:)</tw-passagedata><tw-passagedata pid="51" name="limp into the forest" tags="Inventory Ending" position="2475,350" size="100,100">The guard is so distracted he doesn&#39;t hear you limp slowly into the forest. You don&#39;t hear his voice until you are safely hidden behind a tree.
 
 (text-colour:#33CCCC)[&quot;Hey, new girl, where&#39;d you go? Come on, if we slack on guard duty, the prince will know! And I&#39;m not about to take the blame for you!&quot;]
 
-[[escape into the forest-&gt;CONTINUED...]] </tw-passagedata><tw-passagedata pid="52" name="wait" tags="Inventory" position="2375,125" size="100,100">The guard returns. (text-colour:#33CCCC)[&quot;There was nothing there but the enchanted coin we put there just in case she escapes. Don&#39;t touch it by the way, unless you want to get trapped up there with her.&quot;]
+[[escape into the forest-&gt;CONTINUED...]] 
+
+
+
+
+
+:}</tw-passagedata><tw-passagedata pid="52" name="wait" tags="Inventory" position="2375,125" size="100,100">The guard returns. (text-colour:#33CCCC)[&quot;There was nothing there but the enchanted coin we put there just in case she escapes. Don&#39;t touch it by the way, unless you want to get trapped up there with her.&quot;]
 
 [[&quot;Woah, what in the world is that??&quot;]]
 [[&quot;I&#39;m gonna go check the stables-&gt;stables]]
@@ -528,7 +577,11 @@ You&#39;re too slow with your injured leg. Better find another way out.
 
 Oh, and a freshly spun spider web, with a cute little spider spinning it&#39;s way [[down-&gt;look down]].
 
-[[back-&gt;oversized painting]] </tw-passagedata><tw-passagedata pid="54" name="door" tags="Inventory" position="525,875" size="100,100">{&lt;!--How do I make the old music resume? Maybe I don&#39;t have to...--&gt;
+[[back-&gt;oversized painting]] 
+
+
+
+:)</tw-passagedata><tw-passagedata pid="54" name="door" tags="Inventory" position="525,875" size="100,100">{&lt;!--How do I make the old music resume? Maybe I don&#39;t have to...--&gt;
 (set: $inHallway to false)
 }The door&#39;s cracked red paint looks so old there&#39;s a good chance it contains lead. Or arsenic. You absentmindedly wonder just how old this tower is...
 
@@ -837,9 +890,22 @@ and $found_crowbar is false)[
 
 }You picked up the crowbar.
 
-[[look around the tower]] </tw-passagedata><tw-passagedata pid="67" name="look down" tags="Inventory" position="1500,450" size="100,100">(if:$found_crowbar is false)[Hey, there&#39;s a [[crowbar-&gt;crowbar.]] with some gum stuck to it.] (else:)[Your shoes are a little muddy from running away from the royal guards yesterday. 
+[[look around the tower]] 
 
-[[look around the tower]]]</tw-passagedata><tw-passagedata pid="68" name="Music" tags="header" position="400,0" size="100,100">{(if: $unplugRadio is true)[&lt;script&gt;
+
+
+
+
+
+:)</tw-passagedata><tw-passagedata pid="67" name="look down" tags="Inventory" position="1500,450" size="100,100">(if:$found_crowbar is false)[Hey, there&#39;s a [[crowbar-&gt;crowbar.]] with some gum stuck to it.] (else:)[Your shoes are a little muddy from running away from the royal guards yesterday. 
+
+[[look around the tower]]]
+
+
+
+
+
+*</tw-passagedata><tw-passagedata pid="68" name="Music" tags="header" position="400,0" size="100,100">{(if: $unplugRadio is true)[&lt;script&gt;
 	Sound.pause();
 &lt;/script&gt;]
 (else-if: $unplugRadio is false)[&lt;script&gt;Sound.resume();&lt;/script&gt;]
@@ -916,7 +982,14 @@ You take a sausage and put it in your backpocket. Might come in handy.
 &lt;script&gt;Sound.play(&#39;music/medieval-music-by-sjal-on-hunehals-borg-tavern.mp3&#39;);&lt;/script&gt;(set: $turkishMagic to true)(set: $hasTurkish to false)
 You stuff the quishy square into your mouth, and though it doesn&#39;t really taste like anything, you find yourself hungering for more. You search your pockets fruitlessly for more and finally look up to see the guard brandishing his spear at you.
 
-(text-colour:#33CCCC)[[[&quot;Back in the tower-&gt;Yes]] you go, enchantress.&quot;]</tw-passagedata><tw-passagedata pid="89" name="shrug" tags="Inventory" position="2700,575" size="100,100">(text-colour:#33CCCC)[&quot;Not one for words, eh?&quot;] the guard says, eyes still fixated on the turkish delight in your outstreched hand. (text-colour:#33CCCC)[&quot;Well if that&#39;s the case, I&#39;ll let this slide. We&#39;ll probably catch you again soon anyway. Just don&#39;t tell the prince I let you go.&quot;]
+(text-colour:#33CCCC)[[[&quot;Back in the tower-&gt;Yes]] you go, enchantress.&quot;]
+
+
+
+
+
+
+*</tw-passagedata><tw-passagedata pid="89" name="shrug" tags="Inventory" position="2700,575" size="100,100">(text-colour:#33CCCC)[&quot;Not one for words, eh?&quot;] the guard says, eyes still fixated on the turkish delight in your outstreched hand. (text-colour:#33CCCC)[&quot;Well if that&#39;s the case, I&#39;ll let this slide. We&#39;ll probably catch you again soon anyway. Just don&#39;t tell the prince I let you go.&quot;]
 
 Looks like your free to [[escape-&gt;CONTINUED...]].
 
@@ -954,7 +1027,14 @@ But he never does. As soon as he finishes the sausage, he clutches his stomach a
 
 (text-colour:#33CCCC)[&quot;Don&#39;t move, I&#39;ll be right back!&quot;]
 
-Looks like your free to [[escape-&gt;CONTINUED...]].</tw-passagedata><tw-passagedata pid="95" name="give cupcake" tags="Inventory" position="2600,825" size="100,100">(set: $inventory to it - (a: $cupcake))The guard scrunches his nose. 
+Looks like your free to [[escape-&gt;CONTINUED...]].
+
+
+
+
+
+
+:}</tw-passagedata><tw-passagedata pid="95" name="give cupcake" tags="Inventory" position="2600,825" size="100,100">(set: $inventory to it - (a: $cupcake))The guard scrunches his nose. 
 
 (text-colour:#33CCCC)[&quot;Ew, get that thing away from me.&quot;]
 
@@ -968,7 +1048,9 @@ He points his spear at you. (text-colour:#33CCCC)[&quot;(if: $showBadge is true)
 
 
 
-</tw-passagedata><tw-passagedata pid="97" name="eat cupcake" tags="Ending" position="2700,775" size="100,100">&lt;script&gt;Sound.stop();&lt;/script&gt;
+
+
+:)</tw-passagedata><tw-passagedata pid="97" name="eat cupcake" tags="Ending" position="2700,775" size="100,100">&lt;script&gt;Sound.stop();&lt;/script&gt;
 &lt;script&gt;Sound.play(&#39;https://www.dropbox.com/scl/fi/vtphefh4tmyki91igeobm/desire-for-freedom.mp3?rlkey=eajsa01afuqq0qm6h9qnu6sih&amp;dl=1&#39;);&lt;/script&gt;The creamy goodness of the cupcake washes over you, even as the guard points his spear at you.
 
 {(text-colour:#33CCCC)[&quot;(if: $showBadge is true)[That cupcake&#39;s from the tower! ]Back you go, Missy.&quot;]}
@@ -994,13 +1076,23 @@ Basically all you see is trees. The sun is starting to set. Better get outta [[h
 </tw-passagedata><tw-passagedata pid="106" name="plug radio in" tags="Inventory" position="1050,500" size="100,100">(set: $unplugRadio to false)
 (go-to: &quot;old radio&quot;)</tw-passagedata><tw-passagedata pid="107" name="channel 1" tags="Inventory" position="1150,400" size="100,100">(set: $channel1 to true)(set: $channel2 to false)(go-to:&quot;old radio&quot;)</tw-passagedata><tw-passagedata pid="108" name="channel 2" tags="Inventory" position="1250,400" size="100,100">(set: $channel2 to true)(set: $channel1 to false)(set: $channel3 to false)(set: $channel4 to false)(go-to: &quot;old radio&quot;)
 [[back-&gt;old radio]]
-&lt;script&gt;Sound.stop();&lt;/script&gt;</tw-passagedata><tw-passagedata pid="109" name="channel 3" tags="Inventory" position="1250,500" size="100,100">(set: $channel3 to true)(set: $channel1 to false)(set: $channel2 to false)(set: $channel4 to false)(go-to: &quot;old radio&quot;)
+&lt;script&gt;Sound.stop();&lt;/script&gt;
+
+
+</tw-passagedata><tw-passagedata pid="109" name="channel 3" tags="Inventory" position="1250,500" size="100,100">(set: $channel3 to true)(set: $channel1 to false)(set: $channel2 to false)(set: $channel4 to false)(go-to: &quot;old radio&quot;)
 
 
 [[back-&gt;old radio]]</tw-passagedata><tw-passagedata pid="110" name="channel 4" tags="Inventory" position="1250,600" size="100,100">{(set: $channel4 to true)(set: $channel1 to false)(set: $channel2 to false)(set: $channel3 to false)(go-to: &quot;old radio&quot;)
 [[back-&gt;old radio]]</tw-passagedata><tw-passagedata pid="111" name="key" tags="Inventory" position="1050,400" size="100,100">(set: $inventory to it + (a: $key))(set:$found_a_key to true)You picked up (print: $key&#39;s description)
 
-[[back-&gt;old radio]]</tw-passagedata><tw-passagedata pid="112" name="mini pie" tags="Inventory" position="1975,1200" size="100,100">(set: $ridePig to true)The pig gladdy gobbles down the pie and now amorously nuzzles you with its snout.
+[[back-&gt;old radio]]
+
+
+
+
+
+
+*</tw-passagedata><tw-passagedata pid="112" name="mini pie" tags="Inventory" position="1975,1200" size="100,100">(set: $ridePig to true)The pig gladdy gobbles down the pie and now amorously nuzzles you with its snout.
 
 You ride off into the sunset on your glorious... pig. 
 
@@ -1017,13 +1109,30 @@ The pig gobbles down the turkish delight, and looks up at you as if to ask for m
 
 When it sees you don&#39;t have any, it snorts angrily and beats it&#39;s feet on the ground. Too bad you have a $leg leg, or you might have been able to run away before it was too late.
 
-(text-colour:blue)[//You have made a fatal mistake. Try again?//](click-undo:?page)</tw-passagedata><tw-passagedata pid="114" name="tackle her" tags="Inventory" position="1775,1300" size="100,100">The girl cries out as you tackle her, but the sound is covered by the oinking of pigs.
+(text-colour:blue)[//You have made a fatal mistake. Try again?//](click-undo:?page)
+
+
+
+
+
+
+
+
+:}</tw-passagedata><tw-passagedata pid="114" name="tackle her" tags="Inventory" position="1775,1300" size="100,100">The girl cries out as you tackle her, but the sound is covered by the oinking of pigs.
 
 (text-colour:#33CCCC)[&quot;Let me pass, or else,&quot; you threaten.]
 
 The girl shields her face with her arms. (text-colour:#33CCCC)[&quot;I&#39;ll won&#39;t tell the guards if you let me go, just don&#39;t hurt me or the pigs!&quot;]
 
-You [[release her-&gt;stables]] and she scrambles away.</tw-passagedata><tw-passagedata pid="115" name="Grand Gala" tags="Inventory" position="1350,800" size="100,100">I mean seriously, the moment you fixed the DJ&#39;s ancient mix-board, you were [[done-for-&gt;look out window]].</tw-passagedata><tw-passagedata pid="116" name="eyes widen" tags="Inventory" position="1875,1300" size="100,100">Her eyes widen as you limp on your $leg leg. (text-colour:#33CCCC)[&quot;And you jumped out of the tower!&quot;]
+You [[release her-&gt;stables]] and she scrambles away.
+
+
+
+
+
+
+
+:)</tw-passagedata><tw-passagedata pid="115" name="Grand Gala" tags="Inventory" position="1350,800" size="100,100">I mean seriously, the moment you fixed the DJ&#39;s ancient mix-board, you were [[done-for-&gt;look out window]].</tw-passagedata><tw-passagedata pid="116" name="eyes widen" tags="Inventory" position="1875,1300" size="100,100">Her eyes widen as you limp on your $leg leg. (text-colour:#33CCCC)[&quot;And you jumped out of the tower!&quot;]
 
 [[&quot;No I didn&#39;t.&quot;]]
 [[&quot;Yes, and I need your help.&quot;]]
@@ -1206,13 +1315,28 @@ She eyes the candle and you notice a drip descending toward your hand.
 [[tell her]]
 [[don&#39;t tell her]]</tw-passagedata><tw-passagedata pid="161" name="CONTINUED..." tags="Inventory" position="2725,350" size="100,100">(if: visit is 1)[(set: $weather to &quot;rain&quot;)As soon you start down the forest path, rain starts pelting you from above. You might want to find some shelter.
 
-You  [[continue]] down the path(if: $ridePig is true)[ on your pig].](else:)[(go-to: &quot;continue&quot;)]</tw-passagedata><tw-passagedata pid="162" name="path-left" tags="Inventory" position="2825,550" size="100,100">A pair of eyes glare at you through the bushes as you go past. You speed up.
+You  [[continue]] down the path(if: $ridePig is true)[ on your pig].](else:)[(go-to: &quot;continue&quot;)]
+
+
+
+
+
+
+
+:)</tw-passagedata><tw-passagedata pid="162" name="path-left" tags="Inventory" position="2825,550" size="100,100">A pair of eyes glare at you through the bushes as you go past. You speed up.
 (click-append: &quot;speed up.&quot;)[ 
 
 (if: $ridePig is true)[Your pig trips over a root, but recovers](else:)[You trip over a root, but you recover]. You have arrived at a cottage, smoke billowing out of the stone chimney.
 
 [[knock on the door]]
-[[go back-&gt;continue]]]</tw-passagedata><tw-passagedata pid="163" name="knock on the door" tags="Inventory" position="2825,650" size="100,100">{(if: $hilda is &quot;KO&quot;)[You knock, but there is no answer.
+[[go back-&gt;continue]]]
+
+
+
+
+
+
+:)</tw-passagedata><tw-passagedata pid="163" name="knock on the door" tags="Inventory" position="2825,650" size="100,100">{(if: $hilda is &quot;KO&quot;)[You knock, but there is no answer.
 [[go back-&gt;wrong door]]]}
 (else:)[You wait a moment after knocking,  and the clatter of pots and pans echo from the open window.
 
@@ -1226,6 +1350,8 @@ The door swings open, revealing a plump woman with gray eyes and hair. She&#39;s
 &quot;It&#39;s raining, can I come in?&quot;(click-replace: &quot;\&quot;It&#39;s raining, can I come in?\&quot;&quot; )[No.]
 Do you have a healing potion? (click-replace: &quot;Do you have a healing potion?&quot;)[Not for you, dear.]
 [[&quot;Oops, wrong door.&quot;-&gt;wrong door]]]
+
+
 
 
 
@@ -1252,16 +1378,29 @@ The last thing you feel is the cold stone of a dutch oven connecting with your f
 
 
 
-</tw-passagedata><tw-passagedata pid="168" name="wrong door" tags="Inventory" position="2950,650" size="100,100">You walk back down the path and come to the [[fork-&gt;continue]].</tw-passagedata><tw-passagedata pid="169" name="continue" tags="Inventory" position="2825,450" size="100,100">The path to the [[left-&gt;path-left]] runs deeper into the forest, where there is more shadow that light.
+
+
+:)</tw-passagedata><tw-passagedata pid="168" name="wrong door" tags="Inventory" position="2950,650" size="100,100">You walk back down the path and come to the [[fork-&gt;continue]].</tw-passagedata><tw-passagedata pid="169" name="continue" tags="Inventory" position="2825,450" size="100,100">The path to the [[left-&gt;path-left]] runs deeper into the forest, where there is more shadow that light.
 
 To the [[right-&gt;path-right]], a butterfly rests under an outcropping of rock, the wings painted blue and black.
 
-[[Back to tower grounds]]</tw-passagedata><tw-passagedata pid="170" name="path-right" tags="Inventory" position="2825,350" size="100,100">The butterfly takes off as you pass. It&#39;s kind of weird how the spot on its wing looks just like an eye.
+[[Back to tower grounds]]
+
+
+
+
+
+:)</tw-passagedata><tw-passagedata pid="170" name="path-right" tags="Inventory" position="2825,350" size="100,100">The butterfly takes off as you pass. It&#39;s kind of weird how the spot on its wing looks just like an eye.
 
 The path stretches over a hill, and you find yourself at an empty parking lot. There&#39;s a sign that says &quot;lot 1457&quot;, with the Brireshire city logo underneath.
 
 There&#39;s a rustling [[behind you]].
-[[go back-&gt;wrong door]]</tw-passagedata><tw-passagedata pid="171" name="pies" tags="Inventory" position="2950,1025" size="100,100">A large pie steams from the table, the sweet aroma invading the air. You have to admit, the intricate design of the dough latticed on top is impressive. 
+[[go back-&gt;wrong door]]
+
+
+
+
+:)</tw-passagedata><tw-passagedata pid="171" name="pies" tags="Inventory" position="2950,1025" size="100,100">A large pie steams from the table, the sweet aroma invading the air. You have to admit, the intricate design of the dough latticed on top is impressive. 
 
 (text-colour:#33CCCC)[&quot;//That// is what a real pie looks like, my dear. And don&#39;t think you can convince me otherwise. They don&#39;t call me Hilda the pie making monstrousity for nothing.&quot;]
 
@@ -1282,6 +1421,9 @@ A mischevious smile plays on her face. (text-colour:#33CCCC)[&quot;Are you Princ
 
 [[&quot;I am.&quot;-&gt;I am yes]]
 [[&quot;Nope, definitely not.&quot;-&gt;I&#39;m not]]
+
+
+
 
 
 
@@ -1324,7 +1466,13 @@ She stalks toward you. (text-colour:#33CCCC)[&quot;I bet I can get a fair price 
 
 (if: $inventory contains $crowbar)[[[use crowbar-&gt;KO]]]
 (else:) [(text-colour:blue)[//[[You have made a fatal mistake. Try again?-&gt;knock on the door]]//]
-]</tw-passagedata><tw-passagedata pid="177" name="I am yes" tags="Inventory" position="2950,1250" size="100,100">There&#39;s a click as she locks the door. (text-colour:#33CCCC)[&quot;Oh, he&#39;ll be glad to have you back then. I bet I can get a fair price out of you...&quot;]
+]
+
+
+
+
+
+:)</tw-passagedata><tw-passagedata pid="177" name="I am yes" tags="Inventory" position="2950,1250" size="100,100">There&#39;s a click as she locks the door. (text-colour:#33CCCC)[&quot;Oh, he&#39;ll be glad to have you back then. I bet I can get a fair price out of you...&quot;]
 
 (if: $inventory contains $crowbar)[[[use crowbar-&gt;KO]]]
 (else:) [(text-colour:blue)[//[[You have made a fatal mistake. Try again?-&gt;knock on the door]]//]
@@ -1341,7 +1489,9 @@ A match rolls out of her limp hand.(click-append: &quot;hand.&quot;)[
 
 
 
-</tw-passagedata><tw-passagedata pid="180" name="behind you" tags="Inventory" position="2925,350" size="100,100">(set: $AyanaMeet to true)Your sister, Ayana, emerges, a blinding smile on her face. (text-colour:#33CCCC)[&quot;$name, you made it!&quot;]
+
+
+:)</tw-passagedata><tw-passagedata pid="180" name="behind you" tags="Inventory" position="2925,350" size="100,100">(set: $AyanaMeet to true)Your sister, Ayana, emerges, a blinding smile on her face. (text-colour:#33CCCC)[&quot;$name, you made it!&quot;]
 
 She attacks with a warm embrace before pulling back. (text-colour:#33CCCC)[&quot;Did you bring the candles?&quot;]
 
@@ -1351,12 +1501,20 @@ She attacks with a warm embrace before pulling back. (text-colour:#33CCCC)[&quot
 
 [[run]]
 [[hide]]
-[[stay]]</tw-passagedata><tw-passagedata pid="182" name="&quot;What candles?&quot;" tags="Inventory" position="2925,250" size="100,100">(text-colour:#33CCCC)[&quot;Are you serious?&quot;] Ayana says. She brings a hand to her forhead. (text-colour:#33CCCC)[&quot;You don&#39;t know yet, do you? Just go back and bring the candles with you, as many as you can. Hurry, I don&#39;t have much time.&quot;]
+[[stay]]
+
+
+
+
+
+:)</tw-passagedata><tw-passagedata pid="182" name="&quot;What candles?&quot;" tags="Inventory" position="2925,250" size="100,100">(text-colour:#33CCCC)[&quot;Are you serious?&quot;] Ayana says. She brings a hand to her forhead. (text-colour:#33CCCC)[&quot;You don&#39;t know yet, do you? Just go back and bring the candles with you, as many as you can. Hurry, I don&#39;t have much time.&quot;]
 
 [[go back-&gt;wrong door]]
 
 
-</tw-passagedata><tw-passagedata pid="183" name="has candle" tags="Inventory" position="3025,350" size="100,100">Ayana purses her lips. (text-colour:#33CCCC)[&quot;You only brought one? What were you thinking? I need more, as many as you can carry.&quot;]
+
+
+:)</tw-passagedata><tw-passagedata pid="183" name="has candle" tags="Inventory" position="3025,350" size="100,100">Ayana purses her lips. (text-colour:#33CCCC)[&quot;You only brought one? What were you thinking? I need more, as many as you can carry.&quot;]
 
 She looks at you with large eyes that kind of remind you of that butterfly. 
 
@@ -1447,6 +1605,11 @@ END OF GAME
 [[credits]]
 (icon-restart: &quot;Explore a New Path&quot;)</tw-passagedata><tw-passagedata pid="203" name="&quot;I want to marry the prince&quot;" tags="Inventory" position="2025,325" size="100,100">(if: $showBadge is true)[The guard lets out a bark of laughter. (text-colour:#33CCCC)[&quot;Ha! Tell that to that tower girl. I bet she&#39;ll gladly switch you places.&quot;]&lt;br&gt;[[&quot;No, I&#39;m the girl from the tower.&quot;]]](else:)[The guard&#39;s eybrows draw together. (text-colour:#33CCCC)[[[&quot;Come with me.&quot;-&gt;come with me]]]]
 
+ 
+ 
+ 
+ 
+ 
  </tw-passagedata><tw-passagedata pid="204" name="&quot;No, I&#39;m the girl from the tower.&quot;" tags="Inventory" position="2025,225" size="100,100">The guard&#39;s face slackens in understanding. (text-colour:#33CCCC)[&quot;Oh, if that&#39;s the case, [[come with me]].&quot;]</tw-passagedata><tw-passagedata pid="205" name="come with me" tags="Inventory" position="2025,125" size="100,100">You soon find yourself in the castle, face to face with Prince Tehkovadawuhld. (if: $punch is true)[You&#39;re happy to see he still has a purple bruise on his nose.]
 
 He stands as you enter the room with guards on either side of you.
@@ -1522,7 +1685,14 @@ Before you can say anything, he scoops you up in his arms. (text-colour:#33CCCC)
 (if: $hasSausage)[[give sausage]]&lt;br&gt;
 (if: $hasCupcake)[[give cupcake]]&lt;br&gt;
 (if: $hasPie)[[throw mini pie]]&lt;br&gt;
-}</tw-passagedata><tw-passagedata pid="214" name="but..." tags="" position="2125,225" size="100,100">&quot;...do you want to get married for real?&quot; The words spill out of you mouth.
+}
+
+
+
+
+
+
+:)</tw-passagedata><tw-passagedata pid="214" name="but..." tags="" position="2125,225" size="100,100">&quot;...do you want to get married for real?&quot; The words spill out of you mouth.
 
 (text-colour:#33CCCC)[&quot;Ha! So you //do// want to marry me!] The prince&#39;s smile widens. (text-colour:#33CCCC)[&quot;Maybe if you ask nicely...&quot;]
 
@@ -1560,7 +1730,15 @@ END OF GAME
 [[Even if I had them, I&#39;m not giving them to you.-&gt;bad end]]
 (if: $inventory contains $candle)[[I have one here.]]</tw-passagedata><tw-passagedata pid="227" name="bad end" tags="Inventory" position="1825,225" size="100,100">The prince&#39;s face falls. (text-colour:#33CCCC)[&quot;Look, I know you&#39;re upset, $name. But I really need you to figure this out. The future of Post Technia depends on it. I hate to do this, but I have to send you [[back-&gt;Yes]].&quot;]</tw-passagedata><tw-passagedata pid="228" name="I have one here." tags="Inventory" position="1925,225" size="100,100">The prince grimaces.
 
-(text-colour:#33CCCC)[&quot;I&#39;m guessing you haven&#39;t figured out how to use it yet. I hate to do this to you, but I&#39;m gonna have to send you [[back-&gt;Yes]].&quot;]</tw-passagedata><tw-passagedata pid="229" name="&quot;Found what?&quot;" tags="Inventory" position="1825,125" size="100,100">The Prince rubs his temples. (text-colour:#33CCCC)[&quot;You haven&#39;t then. I hate to do this to you, but I&#39;m gonna have to send you [[back-&gt;Yes]].&quot;]</tw-passagedata><tw-passagedata pid="230" name="bad attack" tags="" position="2025,475" size="100,100">Your crowbar connects with a sickening crunch to the prince&#39;s jawbone.
+(text-colour:#33CCCC)[&quot;I&#39;m guessing you haven&#39;t figured out how to use it yet. I hate to do this to you, but I&#39;m gonna have to send you [[back-&gt;Yes]].&quot;]</tw-passagedata><tw-passagedata pid="229" name="&quot;Found what?&quot;" tags="Inventory" position="1825,125" size="100,100">The Prince rubs his temples. (text-colour:#33CCCC)[&quot;You haven&#39;t then. I hate to do this to you, but I&#39;m gonna have to send you [[back-&gt;Yes]].&quot;]
+
+
+
+
+
+
+
+*</tw-passagedata><tw-passagedata pid="230" name="bad attack" tags="" position="2025,475" size="100,100">Your crowbar connects with a sickening crunch to the prince&#39;s jawbone.
 
 And then the guards arrows [[fly.-&gt;Game Over]]</tw-passagedata><tw-passagedata pid="231" name="&quot;Do you actually love me?&quot;" tags="" position="1775,500" size="100,100">(set: $doYouLove to true)(if: $punch is true)[(text-colour:#33CCCC)[&quot;If I tell you, will you smash my nose to smitherenes?&quot; ]]
 (else:)[(text-colour:#33CCCC)[&quot;I can&#39;t say...&quot;]]
@@ -1622,7 +1800,15 @@ The prince lowers himself to one knee. &lt;p class=&quot;dialog&quot;&gt;&quot;T
 </tw-passagedata><tw-passagedata pid="248" name="hand" tags="" position="1200,100" size="100,100">He looks at you with glittering eyes.&lt;p class=&quot;dialog&quot;&gt;&quot;$name, Will you marry me?&quot;&lt;/p&gt;[[wrench your hand away]]
 [[punch him]]
 [[swoon]]</tw-passagedata><tw-passagedata pid="249" name="wrench your hand away" tags="" position="1400,25" size="100,100">The Prince&#39;s lip stretches into a sneer.&lt;p class=&quot;dialog&quot;&gt;&quot;Is that a [[&#39;no&#39;-&gt;Capture]], then? We&#39;ll see about that.&quot;&lt;/p&gt;
-</tw-passagedata><tw-passagedata pid="250" name="punch him" tags="" position="1500,25" size="100,100">(set: $punch to true)The Prince gasps and brings a hand to his nose. &quot;Get her!&quot;
+
+
+
+
+
+
+
+
+:)</tw-passagedata><tw-passagedata pid="250" name="punch him" tags="" position="1500,25" size="100,100">(set: $punch to true)The Prince gasps and brings a hand to his nose. &quot;Get her!&quot;
 
 You bolt, but the guards are faster.
 
@@ -1725,7 +1911,14 @@ Radio static- Sound Effect from &lt;a href=&quot;https://pixabay.com/?utm_source
 (link-goto: &quot;back&quot;, $lastPassage)</tw-passagedata><tw-passagedata pid="272" name="face him" tags="" position="3250,1450" size="100,100">(text-colour:#33CCCC)[&quot;a certain... magical gift my family is in charge of.&quot;] He grimaces. (text-colour:#33CCCC)[&quot;//Was// in charge of. I don&#39;t suppose you could help me.&quot;]
 
 [[&quot;With what, exactly?&quot;-&gt;troubles2]]
-[[huff exasperatedly-&gt;troubles2]]</tw-passagedata><tw-passagedata pid="273" name="troubles2" tags="" position="3125,1575" size="100,100">(text-colour:#33CCCC)[&quot;We&#39;ve been losing money ever since we lost the inheritance,&quot;] he explains, (text-colour:#33CCCC)[&quot;And now that we&#39;re lower than ever, my father expects me to marry into money.&quot;]
+[[huff exasperatedly-&gt;troubles2]]
+
+
+
+
+
+
+:)</tw-passagedata><tw-passagedata pid="273" name="troubles2" tags="" position="3125,1575" size="100,100">(text-colour:#33CCCC)[&quot;We&#39;ve been losing money ever since we lost the inheritance,&quot;] he explains, (text-colour:#33CCCC)[&quot;And now that we&#39;re lower than ever, my father expects me to marry into money.&quot;]
 
 A mischevious look flashes in his eyes. (text-colour:#33CCCC)[&quot;I don&#39;t suppose you would marry me?&quot;]
 
