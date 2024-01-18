@@ -234,6 +234,12 @@ Just an old rug.
 [[look under rug]]
 [[back-&gt;look around the tower]] 
 
+
+
+
+
+:)
+
 </tw-passagedata><tw-passagedata pid="7" name="small coin" tags="Inventory" position="1450,800" size="100,100">(set:$money to it +1)
 (go-to: &quot;window&quot;)
 </tw-passagedata><tw-passagedata pid="8" name="look under rug" tags="Inventory" position="800,1125" size="100,100">Just some dirt and a crooked [[floorboard]].(click-append: &quot;floorboard.&quot;)[ Interesting...]
@@ -1038,10 +1044,26 @@ Now you just need to see about that note from your sister in Briarshire.
 [[Walk down forest path-&gt;CONTINUED...]] </tw-passagedata><tw-passagedata pid="122" name="I" tags="" position="150,300" size="100,100">Who am I? I&#39;m the little sprite that follows you around wherever you go. I give you helpful little hints and reminders. 
 
 C&#39;mon, you know you love me! [[*wink*-&gt;No]]</tw-passagedata><tw-passagedata pid="123" name="floorboard" tags="Inventory" position="700,1225" size="100,100">{(if: $found_crowbar or $found_screwdriver)[ [[pry up plank-&gt;plank]]]
-(else:)[[[Hmm...-&gt;look under rug]]]}</tw-passagedata><tw-passagedata pid="124" name="paper" tags="Inventory" position="800,1225" size="100,100">(set: $readPaper to true)The delicate paper quivers as you unfold it.
+(else:)[[[Hmm...-&gt;look under rug]]]}
+
+
+
+
+
+
+</tw-passagedata><tw-passagedata pid="124" name="paper" tags="Inventory" position="800,1225" size="100,100">(set: $readPaper to true)The delicate paper quivers as you unfold it.
 (box: &quot;=xXXXx=&quot;, 2)
 [//a la derecha, tres pasos hacia las escaleras.//]
-[[take paper]]</tw-passagedata><tw-passagedata pid="125" name="wall" tags="Inventory" position="425,1175" size="100,100">Acording to that note, something should be on the... 
+[[take paper]]
+
+
+
+
+
+
+
+
+:)</tw-passagedata><tw-passagedata pid="125" name="wall" tags="Inventory" position="425,1175" size="100,100">Acording to that note, something should be on the... 
 
 left side (click-replace: &quot;left side&quot;)[Something slimy coats your hand...]
 [[right side-&gt;right]]
@@ -1100,7 +1122,14 @@ The overhead lights flicker and a spark lands on the candle. The wick [[catches.
 
 [[look around the tower]]</tw-passagedata><tw-passagedata pid="139" name="plank" tags="Inventory" position="700,1350" size="100,100">(if: $inventory contains $paper)[](else:)[There&#39;s a scrap of [[paper]] folded in half.]
 
-[[replace floorboard-&gt;look around the tower]]</tw-passagedata><tw-passagedata pid="140" name="candle" tags="menu" position="150,925" size="100,100">The candle&#39;s a little dusty, and still too damp to (link-goto: &quot;light.&quot;, $lastPassage)]
+[[replace floorboard-&gt;look around the tower]]
+
+
+
+
+
+
+:)</tw-passagedata><tw-passagedata pid="140" name="candle" tags="menu" position="150,925" size="100,100">The candle&#39;s a little dusty, and still too damp to (link-goto: &quot;light.&quot;, $lastPassage)]
 
 
 </tw-passagedata><tw-passagedata pid="141" name="Light candle?" tags="" position="200,2025" size="100,100"></tw-passagedata><tw-passagedata pid="142" name="flame" tags="" position="1100,1000" size="100,100">{&lt;script&gt;Sound.play(&#39;music/forest-with-small-river-birds.mp3&#39;);&lt;/script&gt;(set: $time1 to true)}
