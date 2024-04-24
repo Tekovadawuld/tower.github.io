@@ -118,21 +118,6 @@ img {
   color: var(--dialog-color);
 }
 
-div.inventory {
-  display: flex;
-  position: fixed;
-  bottom: 0;
-  padding-bottom: 5%;
-  padding-top: 1%;
-  padding-left:1%;
-  padding-right: 1%; 
-  align-items: center;
-  justify-content: space-between;
-  background: rgb(1,3,20);
-  width: 60%;
-}
-
-
 tw-sidebar {
   display: none;
 }
@@ -151,6 +136,16 @@ div.save-load {
   padding: 1%;
   background: rgb(1,3,20);
   top:0;
+}
+
+div.toggle {
+  padding: 1%;
+  color: #DC9750;
+  background: rgb(1,3,20);
+}
+
+div.line {
+  border-top: rgb(1,3,20) solid 2px;
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">// Sound namespace.
 if (typeof Sound == "undefined") {
 	var Sound = {
@@ -208,7 +203,9 @@ if (typeof Sound == "undefined") {
 	window.Sound = Sound;
 }</script><tw-tag name="Inventory" color="purple"></tw-tag><tw-tag name="footer" color="orange"></tw-tag><tw-tag name="header" color="orange"></tw-tag><tw-tag name="Food" color="green"></tw-tag><tw-tag name="Ending" color="blue"></tw-tag><tw-tag name="startup" color="red"></tw-tag><tw-tag name="debug" color="yellow"></tw-tag><tw-passagedata pid="1" name="Untitled Passage" tags="" position="100,2000" size="100,100"></tw-passagedata><tw-passagedata pid="2" name="Start" tags="Inventory" position="50,200" size="100,100">The Royal Gala starts in 20 minutes. Let&#39;s [[get ready]]!
 
-//[[skip intro-&gt;Capture]]//</tw-passagedata><tw-passagedata pid="3" name="look around the tower" tags="Inventory tower" position="825,900" size="100,100">Besides the [[oversized painting]], the room is sparcely decorated, except for a [[window]], a [[wooden desk]], a [[rug]], and a [[door]].&lt;img src=&quot;https://www.dropbox.com/scl/fi/z0kcfpgthg08clf53gs1c/towerrm.jpg?rlkey=zduh0ld6mf0m4pnnzm1hsl0dk&amp;dl=1&quot; alt=&quot;Normally, there would be a stunning illustration of the main tower room here.&quot;&gt;
+//[[skip intro-&gt;Capture]]//
+
+</tw-passagedata><tw-passagedata pid="3" name="look around the tower" tags="Inventory tower" position="825,900" size="100,100">Besides the [[oversized painting]], the room is sparcely decorated, except for a [[window]], a [[wooden desk]], a [[rug]], and a [[door]].&lt;img src=&quot;https://www.dropbox.com/scl/fi/z0kcfpgthg08clf53gs1c/towerrm.jpg?rlkey=zduh0ld6mf0m4pnnzm1hsl0dk&amp;dl=1&quot; alt=&quot;Normally, there would be a stunning illustration of the main tower room here.&quot;&gt;
 
 
 
@@ -238,7 +235,9 @@ There&#39;s also an [[old radio]]
 [[back-&gt;look around the tower]]
 
 
-&lt;img src=&quot;https://www.dropbox.com/scl/fi/ong073xd83e4hfpn271lm/desk.jpg?rlkey=xwf2u0rqbez1iqfu6oh7zbkg7&amp;dl=1&quot;&gt;</tw-passagedata><tw-passagedata pid="6" name="rug" tags="Inventory" position="700,1125" size="100,100">{&lt;img scr=&quot;https://www.dropbox.com/scl/fi/rf8rx1e5sdvj5h66srzgt/rug.jpg?rlkey=wwwlxfxctmm8x1b4zvibsprve&amp;dl=1&quot;&gt;}
+&lt;img src=&quot;https://www.dropbox.com/scl/fi/ong073xd83e4hfpn271lm/desk.jpg?rlkey=xwf2u0rqbez1iqfu6oh7zbkg7&amp;dl=1&quot;&gt;
+
+</tw-passagedata><tw-passagedata pid="6" name="rug" tags="Inventory" position="700,1125" size="100,100">{&lt;img scr=&quot;https://www.dropbox.com/scl/fi/rf8rx1e5sdvj5h66srzgt/rug.jpg?rlkey=wwwlxfxctmm8x1b4zvibsprve&amp;dl=1&quot;&gt;}
 Just an old rug.
 
 [[look under rug]]
@@ -288,7 +287,8 @@ There are some [[stables]] to the right and a forest [[path]] to the left.
 
 
 
-</tw-passagedata><tw-passagedata pid="12" name="jump out of window" tags="Inventory HP" position="1450,700" size="100,100">{&lt;script&gt;Sound.stop();
+
+:)</tw-passagedata><tw-passagedata pid="12" name="jump out of window" tags="Inventory HP" position="1450,700" size="100,100">{&lt;script&gt;Sound.stop();
 
 var audio_background = new Audio(&#39;https://www.dropbox.com/scl/fi/n1db5z16nv0tts3kuphkm/fall.mp3?rlkey=wcvtr3nyt42ds9jtppw1qnlv8&amp;dl=1&#39;);
 audio_background.play();
@@ -331,11 +331,17 @@ You see something shiny. Another [[coin]]!
 
 
 
-*</tw-passagedata><tw-passagedata pid="16" name="Inventory" tags="footer" position="200,0" size="100,100">&lt;div class=&quot;inventory&quot;&gt;{(if: (passage:)&#39;s tags contains &quot;Inventory&quot;) [{(if: $gameover is 0)[(if: $health &gt; 0)[Health: $health]
+*</tw-passagedata><tw-passagedata pid="16" name="Inventory" tags="footer" position="200,0" size="100,100">&lt;div class=&quot;line&quot;&gt;&lt;div&gt;
+{(if: (passage:)&#39;s tags contains &quot;Inventory&quot;) [&lt;div class=&quot;toggle&quot;&gt;
+&lt;details&gt;
+  &lt;summary&gt;inventory&lt;/summary&gt;
+  &lt;div class=&quot;inventory&quot;&gt;{(if: $gameover is 0)[(if: $health &gt; 0)[Health: $health]
 (elseif: $healthbar is 0)[(go-to: &quot;Game Over&quot;)]]}&lt;br&gt;
-You have: (for: each _item, ...$inventory) [
+(for: each _item, ...$inventory) [
   (print: _item&#39;s name)(if: $inventory&#39;s last is not _item)[, ]
-]]}&lt;/div&gt;</tw-passagedata><tw-passagedata pid="17" name="Yes" tags="Inventory" position="50,300" size="100,100">{&lt;script&gt;
+]]}&lt;/div&gt;
+&lt;/details&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="17" name="Yes" tags="Inventory" position="50,300" size="100,100">{&lt;script&gt;
 
 Sound.fade(0, 1000);
 
@@ -347,13 +353,17 @@ Sound.fade(1, 1000);
 
 }(set: $inventory to it + (a:$note))(set: $captured to true)The tower is quiant enough. Romantic slow jazz plays in the background, accompanied by the distant chirping of birds.
 
-If only there were [[a way out...-&gt;look around the tower]]</tw-passagedata><tw-passagedata pid="18" name="No" tags="Inventory" position="150,200" size="100,100">{(if: $ateCookie is true)[ [[I]] wish I had another cookie, too.]
+If only there were [[a way out...-&gt;look around the tower]]
+
+</tw-passagedata><tw-passagedata pid="18" name="No" tags="Inventory" position="150,200" size="100,100">{(if: $ateCookie is true)[ [[I]] wish I had another cookie, too.]
 (else:)[Understandable. You can wait here unil you&#39;re ready. Here, have a cookie. 
 
 (if: $inventory does not contain (a: $cookie) and $seenCookie is false)[(set: $inventory to it + (a: $cookie))
 (set: $found_cookie to true)]]}
 
-[[Okay, I&#39;m ready now-&gt;Yes]]</tw-passagedata><tw-passagedata pid="19" name="Untitled Passage" tags="" position="100,0" size="100,100">(set: $key to (dm:
+[[Okay, I&#39;m ready now-&gt;Yes]]
+
+</tw-passagedata><tw-passagedata pid="19" name="Untitled Passage" tags="" position="100,0" size="100,100">(set: $key to (dm:
 &quot;id&quot;, 1,
  &quot;name&quot;, &quot;key&quot;
  &quot;description&quot;, &quot;an old worn key&quot;,
@@ -504,7 +514,15 @@ https://prosearch.tribeofnoise.com/artists/show/32965/23966
 The hair is rough and frayed, but you drape it around your shoulders. You desperately hope it doesn&#39;t have lice.
 
 [[back-&gt;Open drawer]] 
-[[look around the tower]] </tw-passagedata><tw-passagedata pid="41" name="coin" tags="" position="2525,1025" size="100,100">(set:$money to it +1)(set: $trickCoin to true)
+[[look around the tower]] 
+
+
+
+
+
+
+
+:)</tw-passagedata><tw-passagedata pid="41" name="coin" tags="" position="2525,1025" size="100,100">(set:$money to it +1)(set: $trickCoin to true)
 (go-to: &quot;look around the tower&quot;)</tw-passagedata><tw-passagedata pid="42" name="destroy painting" tags="Inventory" position="1500,350" size="100,100">(set: $destroyPainting to true)You ram the screwdriver through the flimsy canvas, relishing in the sound it makes as it tears. You feel much better now.
 
 (link-goto: &quot;Return&quot;, (history:)&#39;s last)
@@ -846,6 +864,7 @@ border-radius: 7px;
 [[tower main-&gt;look around the tower]]
 
 &lt;img src=&quot;https://www.dropbox.com/scl/fi/wikm4dpx4b4aj17q8zyw6/drawer.jpg?rlkey=h9kqa0j8k9mz2x2qwoamo2oiq&amp;dl=1&quot; alt=&quot;drawer&quot;&gt;
+
 </tw-passagedata><tw-passagedata pid="65" name="open letter" tags="Inventory" position="375,475" size="100,100">(if: visits is 1)[The wax seal on the crisp envelope snaps open. ]The handwriting is more beautiful than you want to admit.
 
 (box:&quot;=XxxxXxxxXxxxX=&quot;)
@@ -928,7 +947,9 @@ You aren&#39;t sure how this ended up in your pocket.
 
 Eat note(click-replace:&quot;Eat note&quot;)[(set: $inventory to it - (a: $note))The paper tastes, well... papery. You kind of regret eating it.]
  
-(link-goto: &quot;back&quot;, $lastPassage)</tw-passagedata><tw-passagedata pid="70" name="a handkerchief" tags="" position="50,525" size="100,100">(print:$handkerchief&#39;s description)</tw-passagedata><tw-passagedata pid="71" name="a key" tags="" position="50,725" size="100,100">(print:$key&#39;s description)</tw-passagedata><tw-passagedata pid="72" name="hair" tags="" position="150,625" size="100,100">(print:$hair&#39;s description)</tw-passagedata><tw-passagedata pid="73" name="a cookie" tags="menu" position="150,425" size="100,100">(set: $seenCookie to true)(if: $ateCookie is false)[&lt;img src=&quot;https://www.dropbox.com/scl/fi/njjtgw6rrgkg4vj2ct57m/cookie.jpeg?rlkey=53w25u79uwu52dfp6jr5ug1e8&amp;dl=1&quot; alt=&quot;coookiiieee&quot; width=&quot;949&quot; height=&quot;982&quot;&gt;&lt;br&gt;Eat cookie(click-replace: &quot;Eat cookie&quot;)[(set: $ateCookie to true)(set: $inventory to it - (a: $cookie))(set: $found_cookie to false)The chocolate chips melt in your mouth...
+(link-goto: &quot;back&quot;, $lastPassage)
+
+</tw-passagedata><tw-passagedata pid="70" name="a handkerchief" tags="" position="50,525" size="100,100">(print:$handkerchief&#39;s description)</tw-passagedata><tw-passagedata pid="71" name="a key" tags="" position="50,725" size="100,100">(print:$key&#39;s description)</tw-passagedata><tw-passagedata pid="72" name="hair" tags="" position="150,625" size="100,100">(print:$hair&#39;s description)</tw-passagedata><tw-passagedata pid="73" name="a cookie" tags="menu" position="150,425" size="100,100">(set: $seenCookie to true)(if: $ateCookie is false)[&lt;img src=&quot;https://www.dropbox.com/scl/fi/njjtgw6rrgkg4vj2ct57m/cookie.jpeg?rlkey=53w25u79uwu52dfp6jr5ug1e8&amp;dl=1&quot; alt=&quot;coookiiieee&quot; width=&quot;949&quot; height=&quot;982&quot;&gt;&lt;br&gt;Eat cookie(click-replace: &quot;Eat cookie&quot;)[(set: $ateCookie to true)(set: $inventory to it - (a: $cookie))(set: $found_cookie to false)The chocolate chips melt in your mouth...
 You ate a cookie!]]
 (else:)[ [[I]] wish I had another cookie ,too.]
 (link-goto: &quot;back&quot;, $lastPassage)</tw-passagedata><tw-passagedata pid="74" name="a screwdriver" tags="" position="50,625" size="100,100">(print:$screwdriver&#39;s description)</tw-passagedata><tw-passagedata pid="75" name="a badge" tags="" position="50,825" size="100,100">(print:$badge&#39;s description)</tw-passagedata><tw-passagedata pid="76" name="a crowbar" tags="" position="150,725" size="100,100">(print:$crowbar&#39;s description)</tw-passagedata><tw-passagedata pid="77" name="ABC gum" tags="" position="150,525" size="100,100">Aka &quot;already been chewed.&quot; Yuck.
@@ -956,7 +977,6 @@ These squares of powdered goodness are legendary for their mysterious side effec
 
 
 [[back-&gt;inspect food]]</tw-passagedata><tw-passagedata pid="82" name="cupcakes" tags="Inventory Food" position="475,675" size="100,100">(set: _food to &quot;cupcake&quot;)
-&lt;img src=&quot;https://www.dropbox.com/scl/fi/6qqfbj9me94p1zvt5oc7k/Cupcake.jpeg?rlkey=wu41op772xvjnvnqz27qjltn5&amp;dl=1&quot; alt=&quot;A photo of a hallway and two doors&quot; /&gt;
 
 Spongy and sweet, these delights are hard to resist.
 
@@ -964,9 +984,10 @@ eat(click-replace: &quot;eat&quot;)[You ate a  _food! So creamy and delicious.]
 (if: $hasCupcake is false)[take(click-replace: &quot;take&quot;)[(set: $inventory to it + (a: $cupcake))(set: $hasCupcake to true) You took a  _food!]]
 [[back-&gt;inspect food]]
 
+&lt;img src=&quot;https://www.dropbox.com/scl/fi/6qqfbj9me94p1zvt5oc7k/Cupcake.jpeg?rlkey=wu41op772xvjnvnqz27qjltn5&amp;dl=1&quot; alt=&quot;A photo of a hallway and two doors&quot; /&gt;
 
 
-*</tw-passagedata><tw-passagedata pid="83" name="test" tags="" position="400,150" size="100,100">(set: $inventory to it + (a: $crowbar))(set: $inventory to it + (a: $key))
+</tw-passagedata><tw-passagedata pid="83" name="test" tags="" position="400,150" size="100,100">(set: $inventory to it + (a: $crowbar))(set: $inventory to it + (a: $key))
 [[wooden desk]]</tw-passagedata><tw-passagedata pid="84" name="eat sausage" tags="HP Inventory Food" position="575,675" size="100,100">(set: $health to it-15)
 You eat the sausage, but it tastes funny. 
 (text-style: &quot;sway&quot;) [And now you don&#39;t feel so good.]
@@ -1062,17 +1083,8 @@ The taste of the cupcake lingers even as you are transported back to [[the tower
 
 (text-colour:#33CCCC)[[[&quot;Back in the tower you miscreant!&quot;-&gt;look around the tower]]]</tw-passagedata><tw-passagedata pid="99" name="broken hook" tags="Inventory" position="1250,800" size="100,100">{&lt;img src=&quot;https://www.dropbox.com/scl/fi/vc3xswtenf0rm0bzc4kiq/window.jpg?rlkey=ef801l8l9ytzndx1hzog9fy7c&amp;dl=1&quot;&gt;}Looks like the hook snapped right off of the fastening.
 
-[[back-&gt;window]]</tw-passagedata><tw-passagedata pid="100" name="look out window" tags="Inventory" position="1250,700" size="100,100">&lt;img src=&quot;https://www.dropbox.com/scl/fi/vc3xswtenf0rm0bzc4kiq/window.jpg?rlkey=ef801l8l9ytzndx1hzog9fy7c&amp;dl=1&quot;&gt;
-You know, none of this would have happened if you had stayed home the night of the [[Grand Gala]].
-
-Basically all you see is trees. The sun is starting to set. Better get outta [[here-&gt;window]] soon.
-
-
-
-
-
-
-:)</tw-passagedata><tw-passagedata pid="101" name="Eat cookie? " tags="" position="150,825" size="100,100">(set: $found_cookie to false)(print: $cookie&#39;s description)[[back-&gt;a cookie]]</tw-passagedata><tw-passagedata pid="102" name="Last Passage Tracking" tags="header" position="0,0" size="100,100">(if: not ((passage:)&#39;s tags contains &quot;menu&quot;))[(set: $lastPassage to (passage:)&#39;s name)]</tw-passagedata><tw-passagedata pid="103" name="unplug radio" tags="Inventory" position="1050,600" size="100,100">(set: $unplugRadio to true)(set: $channel1 to false)(set: $channel2 to false)(set: $channel3 to false)(set: $channel4 to false)
+[[back-&gt;window]]</tw-passagedata><tw-passagedata pid="100" name="look out window" tags="Inventory" position="1250,700" size="100,100">Theres another roof nearby, but too far to jump to. Beyond that is a forest filled with a bunch of trees. The sun is starting to set. Better get outta [[here-&gt;window]] soon.
+</tw-passagedata><tw-passagedata pid="101" name="Eat cookie? " tags="" position="150,825" size="100,100">(set: $found_cookie to false)(print: $cookie&#39;s description)[[back-&gt;a cookie]]</tw-passagedata><tw-passagedata pid="102" name="Last Passage Tracking" tags="header" position="0,0" size="100,100">(if: not ((passage:)&#39;s tags contains &quot;menu&quot;))[(set: $lastPassage to (passage:)&#39;s name)]</tw-passagedata><tw-passagedata pid="103" name="unplug radio" tags="Inventory" position="1050,600" size="100,100">(set: $unplugRadio to true)(set: $channel1 to false)(set: $channel2 to false)(set: $channel3 to false)(set: $channel4 to false)
 (go-to: &quot;old radio&quot;)</tw-passagedata><tw-passagedata pid="104" name="under radio" tags="Inventory" position="1150,500" size="100,100">There&#39;s some dust. There are four screws on the bottom of the radio.(if: $found_screwdriver is true and $fixedRadio is false)[ You could use your [[screwdriver-&gt;Radio panel]] here.]
 (else-if: $fixedRadio is true)[Ya know, you&#39;re really good at fixing things.]
 
@@ -1167,7 +1179,9 @@ Now you just need to see about that note from your sister in Briarshire.
 
 [[Walk down forest path-&gt;CONTINUED...]] </tw-passagedata><tw-passagedata pid="122" name="I" tags="" position="150,300" size="100,100">Who am I? I&#39;m the little sprite that follows you around wherever you go. I give you helpful little hints and reminders. 
 
-C&#39;mon, you know you love me! [[*wink*-&gt;No]]</tw-passagedata><tw-passagedata pid="123" name="floorboard" tags="Inventory" position="700,1225" size="100,100">{(if: $found_crowbar or $found_screwdriver)[ [[pry up plank-&gt;plank]]]
+C&#39;mon, you know you love me! [[*wink*-&gt;No]]
+
+</tw-passagedata><tw-passagedata pid="123" name="floorboard" tags="Inventory" position="700,1225" size="100,100">{(if: $found_crowbar or $found_screwdriver)[ [[pry up plank-&gt;plank]]]
 (else:)[[[Hmm...-&gt;look under rug]]]}
 
 
@@ -1192,7 +1206,7 @@ C&#39;mon, you know you love me! [[*wink*-&gt;No]]</tw-passagedata><tw-passageda
 left side (click-replace: &quot;left side&quot;)[Something slimy coats your hand...]
 [[right side-&gt;right]]
 
-[[back-&gt;stairs]]</tw-passagedata><tw-passagedata pid="126" name="Open drawer" tags="" position="700,325" size="100,100">The empty drawer still has a few long stray hairs... eww.
+[[back-&gt;stairs]]</tw-passagedata><tw-passagedata pid="126" name="Open drawer" tags="Inventory" position="700,325" size="100,100">The empty drawer still has a few long stray hairs... eww.
 
 [[back-&gt;drawer]]</tw-passagedata><tw-passagedata pid="127" name="right" tags="Inventory" position="325,1175" size="100,100">Your hand runs over an indentation in the wall. There&#39;s [[something]] there.</tw-passagedata><tw-passagedata pid="128" name="left" tags="" position="550,1425" size="100,100"></tw-passagedata><tw-passagedata pid="129" name="something" tags="Inventory" position="325,1275" size="100,100">It feels like a tiny [[lever]].
 [[back-&gt;wall]]</tw-passagedata><tw-passagedata pid="130" name="trigger" tags="" position="50,925" size="100,100">(set: $inventory to it + (a: $lighter))A little orange flame pops up from the metal tip.
@@ -1537,7 +1551,9 @@ She looks at you with large eyes that kind of remind you of that butterfly.
 
 [[go back-&gt;wrong door]]</tw-passagedata><tw-passagedata pid="184" name="take bskt" tags="" position="700,625" size="100,100">(set: $inventory to it + (a: $basket))(set:$hasBasket to true)You pick up the basket and dump all its contents on the floor. You&#39;ll need the space.
 
-[[back-&gt;wooden desk]]</tw-passagedata><tw-passagedata pid="185" name="candle basket" tags="Inventory" position="450,1725" size="100,100">(set: $candleBasket to true)You pick up the candles one by one and put them in your basket.
+[[back-&gt;wooden desk]]
+
+</tw-passagedata><tw-passagedata pid="185" name="candle basket" tags="Inventory" position="450,1725" size="100,100">(set: $candleBasket to true)You pick up the candles one by one and put them in your basket.
 
 [[back-&gt;hallway]]</tw-passagedata><tw-passagedata pid="186" name="dark road." tags="" position="3375,625" size="100,100">A bright light blinds you, the hum of an engine 
 and the screech of tires echoing through the forest 
@@ -1783,36 +1799,36 @@ The Prince blanches. (text-colour:#33CCCC)[&quot;Ha! So you //did// steal it. Bu
 
 [[&quot;I&#39;m that cool.&quot;-&gt;&quot;Well you did.&quot;]]
 [[&quot;I just... tried different things.&quot;-&gt;&quot;Well you did.&quot;]]
-</tw-passagedata><tw-passagedata pid="235" name="Untitled Passage 3" tags="" position="2625,1350" size="100,100"></tw-passagedata><tw-passagedata pid="236" name="go inside" tags="" position="700,0" size="100,100">There is no music as you descend the vast staircase, just a bunch of guests milling about and a frazzled DJ standing in the [[corner]].</tw-passagedata><tw-passagedata pid="237" name="corner" tags="" position="800,0" size="100,100">You approach the DJ, who is dressed to the nines in a red ballgown and gold-rimmed glasses.
+</tw-passagedata><tw-passagedata pid="235" name="Untitled Passage 3" tags="" position="2625,1350" size="100,100"></tw-passagedata><tw-passagedata pid="236" name="go inside" tags="Inventory" position="700,0" size="100,100">There is no music as you descend the vast staircase, just a bunch of guests milling about and a frazzled DJ standing in the [[corner]].</tw-passagedata><tw-passagedata pid="237" name="corner" tags="Inventory" position="800,0" size="100,100">You approach the DJ, who is dressed to the nines in a red ballgown and gold-rimmed glasses.
 
 [[&quot;Hi.&quot;]]
 [[&quot;What&#39;s going on?&quot;]]
-</tw-passagedata><tw-passagedata pid="238" name="&quot;What&#39;s going on?&quot;" tags="" position="900,0" size="100,100">She rubs her forehead.&lt;div class=&quot;dialog&quot;&gt;&quot;My mix-board is fried. It was working fine earlier.&quot;&lt;/div&gt;
+</tw-passagedata><tw-passagedata pid="238" name="&quot;What&#39;s going on?&quot;" tags="Inventory" position="900,0" size="100,100">She rubs her forehead.&lt;div class=&quot;dialog&quot;&gt;&quot;My mix-board is fried. It was working fine earlier.&quot;&lt;/div&gt;
 
-[[&quot;Can I help?&quot;]]</tw-passagedata><tw-passagedata pid="239" name="&quot;Can I help?&quot;" tags="" position="1000,0" size="100,100">Her eyes widen in relief.&lt;div class=&quot;dialog&quot;&gt;&quot;Yes, please! If I don&#39;t fix my mix-board soon, I&#39;ll be fired.&quot;&lt;/div&gt;
+[[&quot;Can I help?&quot;]]</tw-passagedata><tw-passagedata pid="239" name="&quot;Can I help?&quot;" tags="Inventory" position="1000,0" size="100,100">Her eyes widen in relief.&lt;div class=&quot;dialog&quot;&gt;&quot;Yes, please! If I don&#39;t fix my mix-board soon, I&#39;ll be fired.&quot;&lt;/div&gt;
 
-[[inspect mix-board]]</tw-passagedata><tw-passagedata pid="240" name="fix mix-board" tags="" position="800,200" size="100,100"></tw-passagedata><tw-passagedata pid="241" name="inspect mix-board" tags="" position="1100,0" size="100,100">It&#39;s a pretty old device, but so is everything here in Post-Technia. The knobs all turn, but they aren&#39;t doing anything. 
+[[inspect mix-board]]</tw-passagedata><tw-passagedata pid="240" name="fix mix-board" tags="" position="800,200" size="100,100"></tw-passagedata><tw-passagedata pid="241" name="inspect mix-board" tags="Inventory" position="1100,0" size="100,100">It&#39;s a pretty old device, but so is everything here in Post-Technia. The knobs all turn, but they aren&#39;t doing anything. 
 
 [[circuit board]]
 [[power cord]]
 [[knobs]]
-There&#39;s a [[box]] under the table.</tw-passagedata><tw-passagedata pid="242" name="power cord" tags="" position="1200,0" size="100,100">It&#39;s been cut completely in half. In a world where technology is so scarce, who would do this?
+There&#39;s a [[box]] under the table.</tw-passagedata><tw-passagedata pid="242" name="power cord" tags="Inventory" position="1200,0" size="100,100">It&#39;s been cut completely in half. In a world where technology is so scarce, who would do this?
 
-[[back-&gt;inspect mix-board]]</tw-passagedata><tw-passagedata pid="243" name="spare" tags="" position="700,100" size="100,100">&lt;script&gt; 
+[[back-&gt;inspect mix-board]]</tw-passagedata><tw-passagedata pid="243" name="spare" tags="Inventory" position="700,100" size="100,100">&lt;script&gt; 
 Sound.play(&#39;https://www.dropbox.com/scl/fi/rtmuwjln73ss1gfhfoxcr/tango.mp3?rlkey=ygjy52hww3vn0rcrp7t7ljvuq&amp;dl=1&#39;);&lt;/script&gt;You replace the power chord and the music hums to life. 
 
-&lt;div class=&quot;dialog&quot;&gt;&quot;It looks like we have ourselves an [[enchantress-&gt;prince]].&quot;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="244" name="prince" tags="" position="800,100" size="100,100">You spin to find yourself face to face with Prince Tehkovadawuld, heir to the throne, and the most sought after man in Post-technia.
+&lt;div class=&quot;dialog&quot;&gt;&quot;It looks like we have ourselves an [[enchantress-&gt;prince]].&quot;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="244" name="prince" tags="Inventory" position="800,100" size="100,100">You spin to find yourself face to face with Prince Tehkovadawuld, heir to the throne, and the most sought after man in Post-technia.
 
 He&#39;s taller in person than in the newspapers, his grin like a bolt of lightning striking your heart with...
 
 [[fear]]
 [[love]]
-[[anger]]</tw-passagedata><tw-passagedata pid="245" name="fear" tags="" position="1100,100" size="100,100">Your mouth goes dry and you cower away from him, but the prince reaches for your hand.&lt;p class=&quot;dialog&quot;&gt;&quot;No need for that, little mouse. I just want to ask you something.&quot;&lt;/p&gt;  He lowers himself to one [[knee-&gt;hand]]. </tw-passagedata><tw-passagedata pid="246" name="love" tags="" position="1000,100" size="100,100">(set: $love to true)Blood rushes to your face as you beam back at him. &quot;Prince Tehkovadawuhld, you flatter me.&quot;
+[[anger]]</tw-passagedata><tw-passagedata pid="245" name="fear" tags="Inventory" position="1100,100" size="100,100">Your mouth goes dry and you cower away from him, but the prince reaches for your hand.&lt;p class=&quot;dialog&quot;&gt;&quot;No need for that, little mouse. I just want to ask you something.&quot;&lt;/p&gt;  He lowers himself to one [[knee-&gt;hand]]. </tw-passagedata><tw-passagedata pid="246" name="love" tags="Inventory" position="1000,100" size="100,100">(set: $love to true)Blood rushes to your face as you beam back at him. &quot;Prince Tehkovadawuhld, you flatter me.&quot;
 
-The prince lowers himself to one knee. &lt;p class=&quot;dialog&quot;&gt;&quot;Oh?&quot;&lt;/p&gt;  He reaches for your [[hand]].</tw-passagedata><tw-passagedata pid="247" name="anger" tags="" position="900,100" size="100,100">&quot;What are you //doing// sneaking up on people like that?&quot; you shout, blood rushing to your face.
+The prince lowers himself to one knee. &lt;p class=&quot;dialog&quot;&gt;&quot;Oh?&quot;&lt;/p&gt;  He reaches for your [[hand]].</tw-passagedata><tw-passagedata pid="247" name="anger" tags="Inventory" position="900,100" size="100,100">&quot;What are you //doing// sneaking up on people like that?&quot; you shout, blood rushing to your face.
 
 The prince lowers himself to one knee. &lt;p class=&quot;dialog&quot;&gt;&quot;This.&quot;&lt;/p&gt;  He reaches for your [[hand]].
-</tw-passagedata><tw-passagedata pid="248" name="hand" tags="" position="1200,100" size="100,100">He looks at you with glittering eyes.&lt;p class=&quot;dialog&quot;&gt;&quot;$name, Will you marry me?&quot;&lt;/p&gt;[[wrench your hand away]]
+</tw-passagedata><tw-passagedata pid="248" name="hand" tags="Inventory" position="1200,100" size="100,100">He looks at you with glittering eyes.&lt;p class=&quot;dialog&quot;&gt;&quot;$name, Will you marry me?&quot;&lt;/p&gt;[[wrench your hand away]]
 [[punch him]]
 [[swoon]]</tw-passagedata><tw-passagedata pid="249" name="wrench your hand away" tags="" position="1400,25" size="100,100">The Prince&#39;s lip stretches into a sneer.&lt;p class=&quot;dialog&quot;&gt;&quot;Is that a [[&#39;no&#39;-&gt;Capture]], then? We&#39;ll see about that.&quot;&lt;/p&gt;
 
@@ -1831,11 +1847,11 @@ You bolt, but the guards are faster.
 
 The Prince peers down at you.&lt;p class=&quot;dialog&quot;&gt;&quot;Is that a [[&#39;no&#39;-&gt;Capture]], then? We&#39;ll see about that.&quot;&lt;/p&gt;
 
-</tw-passagedata><tw-passagedata pid="252" name="look around." tags="" position="1050,200" size="100,100">The room is full of people chatting and eating hors d&#39;oeuvres.(click-replace: &quot;hors d&#39;oeuvres.&quot;)[fancy cheeses on toothpicks.]
+</tw-passagedata><tw-passagedata pid="252" name="look around." tags="Inventory" position="1050,200" size="100,100">The room is full of people chatting and eating hors d&#39;oeuvres.(click-replace: &quot;hors d&#39;oeuvres.&quot;)[fancy cheeses on toothpicks.]
 
 You absently wonder why your sister(click-append:&quot;sister&quot;)[, Ayana,] was so insistent you come.
 
-[[back-&gt;power cord]]</tw-passagedata><tw-passagedata pid="253" name="box" tags="" position="600,100" size="100,100">There&#39;s a spare power chord inside.
+[[back-&gt;power cord]]</tw-passagedata><tw-passagedata pid="253" name="box" tags="Inventory" position="600,100" size="100,100">There&#39;s a spare power chord inside.
 
 [[use it-&gt;spare]]</tw-passagedata><tw-passagedata pid="254" name="jump" tags="" position="325,1950" size="100,100">The stairs lead to a door. It creaks as it opens inward, and there is a pile of [[hay-&gt;examine hay stack]] covering the whole doorway.</tw-passagedata><tw-passagedata pid="255" name="goBack" tags="" position="625,975" size="100,100">(set: $hallway to false)(go-to: &quot;back to tower&quot;)</tw-passagedata><tw-passagedata pid="256" name="credits" tags="" position="3175,600" size="100,100">Game created by Anna Sanchez using twinery.org.
 
@@ -1899,14 +1915,14 @@ Radio static- Sound Effect from &lt;a href=&quot;https://pixabay.com/?utm_source
 {(if: $doYouLove is false)[ [[&quot;Do you actually love me?&quot;]]]}
 { [[&quot;Can I go home?&quot;]]}
 {(if: $inventory contains $crowbar)[ [[attack prince-&gt;bad attack]]]}
-{(if: $candleBasket is true)[ [[give him basket]]]}</tw-passagedata><tw-passagedata pid="258" name="Sidebar" tags="header" position="500,150" size="100,100">&lt;div class=&quot;save-load&quot;&gt;{(link:&quot;Save&quot;)[(if:(save-game:&quot;$name&quot;))[ Game saved!](else: )[Sorry, I couldn&#39;t save your game.]] / {(if: (saved-games: ) contains &quot;$name&quot;)[(link: &quot;Load&quot;)[(load-game: &quot;$name&quot;)]
-]} (color: gray)[&lt;span&gt;&amp;copy&lt;/span&gt; Anna Sanchez]}&lt;/div&gt;&lt;div class=&quot;border&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="259" name="&quot;Hi.&quot;" tags="" position="950,200" size="100,100">She blinks slowly.&lt;div class=&quot;dialog&quot;&gt;&quot;Hello.&quot;&lt;/div&gt;
+{(if: $candleBasket is true)[ [[give him basket]]]}</tw-passagedata><tw-passagedata pid="258" name="Sidebar" tags="header" position="500,150" size="100,100">&lt;div class=&quot;header&quot;&gt;*&lt;/div&gt;&lt;div class=&quot;save-load&quot;&gt;{(link:&quot;Save&quot;)[(if:(save-game:&quot;$name&quot;))[ Game saved!](else: )[Sorry, I couldn&#39;t save your game.]] / {(if: (saved-games: ) contains &quot;$name&quot;)[(link: &quot;Load&quot;)[(load-game: &quot;$name&quot;)]
+]} (color: gray)[&lt;span&gt;&amp;copy&lt;/span&gt; Anna Sanchez]}&lt;/div&gt;&lt;div class=&quot;border&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="259" name="&quot;Hi.&quot;" tags="Inventory" position="950,200" size="100,100">She blinks slowly.&lt;div class=&quot;dialog&quot;&gt;&quot;Hello.&quot;&lt;/div&gt;
 
 [[&quot;What&#39;s going on?&quot;]]
-</tw-passagedata><tw-passagedata pid="260" name="circuit board" tags="" position="700,200" size="100,100">You disassemble the device until your looking at the bare green ciruit board. You stare at it for a few seconds. It looks pretty normal.
+</tw-passagedata><tw-passagedata pid="260" name="circuit board" tags="Inventory" position="700,200" size="100,100">You disassemble the device until your looking at the bare green ciruit board. You stare at it for a few seconds. It looks pretty normal.
 
 [[reassemble-&gt;inspect mix-board]]
-</tw-passagedata><tw-passagedata pid="261" name="knobs" tags="" position="600,200" size="100,100">The knobs all turn, but they aren&#39;t doing anything.
+</tw-passagedata><tw-passagedata pid="261" name="knobs" tags="Inventory" position="600,200" size="100,100">The knobs all turn, but they aren&#39;t doing anything.
 
 [[back-&gt;inspect mix-board]]</tw-passagedata><tw-passagedata pid="262" name="take paper" tags="" position="800,1325" size="100,100">(set: $inventory to it + (a: $paper))(go-to: &quot;plank&quot;)</tw-passagedata><tw-passagedata pid="263" name="a scrap of paper" tags="menu" position="50,1025" size="100,100">//a la derecha, tres pasos hacia las escaleras.//
 
@@ -1915,7 +1931,9 @@ Radio static- Sound Effect from &lt;a href=&quot;https://pixabay.com/?utm_source
 (if: $inventory does not contain $notebook)[ [[notebook]]]
 (if: $inventory does not contain $mints)[[[mints]]]
 (if: $inventory does not contain $vest)[[[bulletproof vest]]]
-[[just go already-&gt;The Gala]]</tw-passagedata><tw-passagedata pid="265" name="notebook" tags="" position="150,1125" size="100,100">(set: $inventory to it + (a:$notebook))(go-to:&quot;get ready&quot;)</tw-passagedata><tw-passagedata pid="266" name="mints" tags="Inventory" position="150,1025" size="100,100">(set: $inventory to it + (a:$mints))(go-to:&quot;get ready&quot;)</tw-passagedata><tw-passagedata pid="267" name="bulletproof vest" tags="Inventory" position="50,1125" size="100,100">(set: $inventory to it + (a:$vest))(go-to:&quot;get ready&quot;)</tw-passagedata><tw-passagedata pid="268" name="The Gala" tags="" position="50,1225" size="100,100">We&#39;re here! I&#39;m so excited I could burst! I know you&#39;re just doing this for that motorcyle your sister promised you if you went, but I, as your personal sprite, never get to have this much fun!
+
+[[just go already-&gt;The Gala]]
+</tw-passagedata><tw-passagedata pid="265" name="notebook" tags="" position="150,1125" size="100,100">(set: $inventory to it + (a:$notebook))(go-to:&quot;get ready&quot;)</tw-passagedata><tw-passagedata pid="266" name="mints" tags="Inventory" position="150,1025" size="100,100">(set: $inventory to it + (a:$mints))(go-to:&quot;get ready&quot;)</tw-passagedata><tw-passagedata pid="267" name="bulletproof vest" tags="Inventory" position="50,1125" size="100,100">(set: $inventory to it + (a:$vest))(go-to:&quot;get ready&quot;)</tw-passagedata><tw-passagedata pid="268" name="The Gala" tags="" position="50,1225" size="100,100">We&#39;re here! I&#39;m so excited I could burst! I know you&#39;re just doing this for that motorcyle your sister promised you if you went, but I, as your personal sprite, never get to have this much fun!
 
 [[go inside]]</tw-passagedata><tw-passagedata pid="269" name="[mints" tags="" position="125,1375" size="100,100"></tw-passagedata><tw-passagedata pid="270" name="[bulletproof vest" tags="" position="375,2125" size="100,100"></tw-passagedata><tw-passagedata pid="271" name="a notebook" tags="menu" position="150,1225" size="100,100">(if: $captured is true)[So it turns out going to that gala was a very bad idea. The moment the Prince saw me, he proposed. And when I didn&#39;t have an instant &quot;yes&quot; for him, he locked me in his tower. I need to figure a way out of here before this romantic jazz music drives me crazy...]
 
